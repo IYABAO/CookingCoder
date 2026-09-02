@@ -1,0 +1,39 @@
+name: Update Homework Stats
+
+on:
+  push:
+    paths:
+      - 'homework/week-*.md'
+      - 'achievements/scripts/stats.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run stats and update README
+        run: |
+          python achievements/scripts/stats.py
+          python achievements/scripts/update_readme.py
+        shell: bash
+
+      - name: Commit stats update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add homework/README.md
+          git diff --cached --quiet || git commit -m "docs: 自动更新作业统计"
+          git push
+        shell: bash
