@@ -34,6 +34,38 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 非结构化数据的最佳实践——不用刀切，用手撕出不规则碎片，大火干煸逼出水分，锅气就是这道菜的编译优化。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[手撕包菜]
+    E[结束]
+    A --> B0
+    S1 --> S2
+    S2 --> D2
+    D2 -- 是 --> S3
+    D2 -- 否 --> S2
+    S3 --> D3
+    D3 -- 是 --> S4
+    D3 -- 否 --> S3
+    S4 --> S5
+    S5 --> E
+
+    S1[煸肉<br>垃圾回收]
+    S2[爆香<br>初始化]
+    D2{辣椒变黑}
+    S3[炒菜<br>主循环]
+    D3{包菜未断生}
+    S4[调味<br>参数注入]
+    S5[出锅<br>返回值]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D2 fill:#FFF3E0,stroke:#E65100
+    style D3 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

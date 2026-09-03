@@ -36,6 +36,44 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 厨房里的「容器化部署」——肉片裹粉(镜像打包)→码碗(容器编排)→上锅蒸(隔离环境运行 90min)，输出一份软糯醇香、肥而不腻的蒸肉。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[粉蒸肉]
+    E[结束]
+    A --> B0
+    S1 --> D1
+    D1 -- 是 --> S2
+    D1 -- 否 --> S1
+    S2 --> D2
+    D2 -- 是 --> S3
+    D2 -- 否 --> S2
+    S3 --> D3
+    D3 -- 是 --> S4
+    D3 -- 否 --> S3
+    S4 --> S5
+    S5 --> S6
+    S6 --> E
+
+    S1[裹米粉<br>镜像打包]
+    D1{米粉太干}
+    S2[码碗<br>容器编排]
+    D2{肉片重叠}
+    S3[上锅蒸<br>隔离环境运行]
+    D3{蒸制时间 < 90min}
+    S4[翻扣<br>服务发布]
+    S5[撒葱花<br>健康检查]
+    S6[完成<br>返回值]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D1 fill:#FFF3E0,stroke:#E65100
+    style D2 fill:#FFF3E0,stroke:#E65100
+    style D3 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

@@ -34,6 +34,48 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 前端渲染的最小闭环——面糊（样式表）倒入热锅（画布），小火慢煎（逐帧渲染），两面金黄就是编译通过。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[家常鸡蛋饼]
+    E[结束]
+    A --> B0
+    S1 --> S2
+    S2 --> D2
+    D2 -- 是 --> S3
+    D2 -- 否 --> S2
+    S3 --> D3
+    D3 -- 是 --> S4
+    D3 -- 否 --> S3
+    S4 --> D4
+    D4 -- 是 --> S5
+    D4 -- 否 --> S4
+    S5 --> D5
+    D5 -- 是 --> S6
+    D5 -- 否 --> S5
+    S6 --> E
+
+    S1[热锅<br>画布初始化]
+    S2[倒面糊<br>渲染第一帧]
+    D2{面糊太厚}
+    S3[煎第一面<br>状态机]
+    D3{表面未凝固}
+    S4[翻面<br>重渲染]
+    D4{翻面时破裂}
+    S5[煎第二面<br>最终渲染]
+    D5{第二面未金黄}
+    S6[出锅<br>返回值]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D2 fill:#FFF3E0,stroke:#E65100
+    style D3 fill:#FFF3E0,stroke:#E65100
+    style D4 fill:#FFF3E0,stroke:#E65100
+    style D5 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

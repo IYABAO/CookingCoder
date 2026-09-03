@@ -34,6 +34,36 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 单线程极速任务——蒜蓉爆香是唯一的初始化函数，油麦菜入锅 60s 即返回，翠绿不黄是唯一的测试断言。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[蒜蓉油麦菜]
+    E[结束]
+    A --> B0
+    S1 --> D1
+    D1 -- 是 --> S2
+    D1 -- 否 --> S1
+    S2 --> D2
+    D2 -- 是 --> S3
+    D2 -- 否 --> S2
+    S3 --> S4
+    S4 --> E
+
+    S1[爆香蒜蓉<br>初始化函数]
+    D1{蒜末变褐发黑}
+    S2[炒菜<br>主循环]
+    D2{炒制时间 < STIR_TIME（60s）}
+    S3[调味<br>参数注入]
+    S4[出锅<br>返回值]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D1 fill:#FFF3E0,stroke:#E65100
+    style D2 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

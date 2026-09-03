@@ -34,6 +34,44 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 家常菜的 "序列化+状态机"——鸡翅煎至金黄(序列化定型)→ 小火焖烧入味(状态机)→ 蜂蜜收汁亮壳(最终提交)，外焦里嫩咸甜回甘。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[蜜汁鸡翅]
+    E[结束]
+    A --> B0
+    S1 --> D1
+    D1 -- 是 --> S2
+    D1 -- 否 --> S1
+    S2 --> S3
+    S3 --> S4
+    S4 --> D4
+    D4 -- 是 --> S5
+    D4 -- 否 --> S4
+    S5 --> D5
+    D5 -- 是 --> S6
+    D5 -- 否 --> S5
+    S6 --> E
+
+    S1[煎翅<br>序列化]
+    D1{鸡翅粘锅}
+    S2[爆香<br>事件触发]
+    S3[调味<br>面向对象继承]
+    S4[焖烧<br>状态机]
+    D4{汤汁未浓稠}
+    S5[收汁+蜂蜜<br>最终提交]
+    D5{蜂蜜下锅后超过 3min 还没收汁}
+    S6[出锅<br>返回值]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D1 fill:#FFF3E0,stroke:#E65100
+    style D4 fill:#FFF3E0,stroke:#E65100
+    style D5 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

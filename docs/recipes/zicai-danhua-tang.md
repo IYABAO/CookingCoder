@@ -34,6 +34,38 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 汤羹界的 "流式输出"——蛋液细线淋入沸水，瞬间化作均匀絮状蛋花，5 分钟编译通过，零失败率。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[紫菜蛋花汤]
+    E[结束]
+    A --> B0
+    S1 --> D1
+    D1 -- 是 --> S2
+    D1 -- 否 --> S1
+    S2 --> S3
+    S3 --> S4
+    S4 --> D4
+    D4 -- 是 --> S5
+    D4 -- 否 --> S4
+    S5 --> E
+
+    S1[烧水<br>初始化]
+    D1{水未大开}
+    S2[调味<br>配置加载]
+    S3[淋蛋花<br>流式输出]
+    S4[冲紫菜<br>热加载]
+    D4{紫菜在锅中煮超过 30s}
+    S5[收尾<br>返回值]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D1 fill:#FFF3E0,stroke:#E65100
+    style D4 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

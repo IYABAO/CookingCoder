@@ -38,6 +38,44 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 宴客菜里的「对象生命周期管理」——煎虾(对象实例化)→焖制(异步等待)→收汁(GC压缩)→出锅(对象发布)，15 分钟完成一份色泽红亮、鲜甜弹牙的大虾。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[油焖大虾]
+    E[结束]
+    A --> B0
+    S1 --> D1
+    D1 -- 是 --> S2
+    D1 -- 否 --> S1
+    S2 --> S3
+    S3 --> D3
+    D3 -- 是 --> S4
+    D3 -- 否 --> S3
+    S4 --> D4
+    D4 -- 是 --> S5
+    D4 -- 否 --> S4
+    S5 --> S6
+    S6 --> E
+
+    S1[煎虾<br>对象实例化]
+    D1{虾重叠}
+    S2[爆香调味<br>依赖注入]
+    S3[焖制<br>异步等待]
+    D3{焖制时间 < 5min}
+    S4[大火收汁<br>GC 压缩]
+    D4{汤汁未浓稠挂糊}
+    S5[出锅<br>对象发布]
+    S6[完成<br>返回值]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D1 fill:#FFF3E0,stroke:#E65100
+    style D3 fill:#FFF3E0,stroke:#E65100
+    style D4 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

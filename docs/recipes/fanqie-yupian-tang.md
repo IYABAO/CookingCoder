@@ -32,6 +32,42 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 汤羹里的 "事务提交"——番茄炒出沙(数据解析)→ 煮汤(管道传输)→ 鱼片逐片下入(事务提交)，一步错满盘碎。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[番茄鱼片汤]
+    E[结束]
+    A --> B0
+    S1 --> D1
+    D1 -- 是 --> S2
+    D1 -- 否 --> S1
+    S2 --> S3
+    S3 --> S4
+    S4 --> D4
+    D4 -- 是 --> S5
+    D4 -- 否 --> S4
+    S5 --> D5
+    D5 -- 是 --> E
+    D5 -- 否 --> S5
+
+    S1[炒番茄<br>数据解析]
+    D1{番茄未出沙}
+    S2[加水煮汤<br>管道传输]
+    S3[下金针菇<br>中间件]
+    S4[下鱼片<br>事务提交]
+    D4{汤剧烈沸腾}
+    S5[出锅<br>返回值]
+    D5{鱼片煮超过 5min}
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D1 fill:#FFF3E0,stroke:#E65100
+    style D4 fill:#FFF3E0,stroke:#E65100
+    style D5 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

@@ -38,6 +38,44 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 新手厨房里的「状态机终态课」——煎翅(对象初始化)→可乐炖煮(事件循环)→收汁(状态机终态: 浓稠挂糊)，零失败率的入门级硬菜，20 分钟编译通过。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[可乐鸡翅]
+    E[结束]
+    A --> B0
+    S1 --> D1
+    D1 -- 是 --> S2
+    D1 -- 否 --> S1
+    S2 --> S3
+    S3 --> D3
+    D3 -- 是 --> S4
+    D3 -- 否 --> S3
+    S4 --> D4
+    D4 -- 是 --> S5
+    D4 -- 否 --> S4
+    S5 --> S6
+    S6 --> E
+
+    S1[煎鸡翅<br>对象初始化]
+    D1{鸡翅出水}
+    S2[炒香调味<br>配置注入]
+    S3[可乐炖煮<br>事件循环]
+    D3{炖煮时间 < 15min}
+    S4[大火收汁<br>状态机终态]
+    D4{汤汁未浓稠挂糊}
+    S5[出锅<br>对象发布]
+    S6[完成<br>返回值]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D1 fill:#FFF3E0,stroke:#E65100
+    style D3 fill:#FFF3E0,stroke:#E65100
+    style D4 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

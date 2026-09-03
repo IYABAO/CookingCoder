@@ -34,6 +34,32 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 分布式系统的经典案例——米饭（主节点）+ 鸡蛋（计算节点）+ 杂蔬（数据节点），大火快炒实现最终一致性，粒粒分明是唯一的共识算法。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始] --> B[米饭打散<br>数据清洗]
+    A --> C[杂蔬焯水<br>编译期优化]
+    B --> D[炒蛋<br>独立节点渲染]
+    C --> D
+    D --> E[炒配料<br>子节点合并]
+    E --> F{米饭是否结块?}
+    F -- 是 --> F1[锅铲压散<br>while 循环]
+    F1 --> F
+    F -- 否 --> G[合炒<br>最终一致性]
+    G --> H{颜色是否均匀?}
+    H -- 否 --> H1[继续翻炒]
+    H1 --> H
+    H -- 是 --> I[调味<br>面向对象继承]
+    I --> J[撒葱出锅<br>return]
+    J --> K[结束]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style D fill:#FFF3E0,stroke:#BF360C
+    style G fill:#FFCCBC,stroke:#BF360C
+    style J fill:#C8E6C9,stroke:#2E7D32
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

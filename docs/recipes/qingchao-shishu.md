@@ -36,6 +36,42 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 函数式编程的纯粹体现——输入（当季蔬菜）→ 处理（大火快炒）→ 输出（本味清甜），不加多余调料就是纯函数，食材本味就是返回值。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[清炒时蔬]
+    E[结束]
+    A --> B0
+    S1 --> D1
+    D1 -- 是 --> S2
+    D1 -- 否 --> S1
+    S2 --> D2
+    D2 -- 是 --> S3
+    D2 -- 否 --> S2
+    S3 --> D3
+    D3 -- 是 --> S4
+    D3 -- 否 --> S3
+    S4 --> S5
+    S5 --> E
+
+    S1[爆香<br>初始化函数]
+    D1{蒜末变褐}
+    S2[炒菜梗<br>高优先级节点]
+    D2{菜梗未变软}
+    S3[炒菜叶<br>低优先级节点]
+    D3{炒制时间 < STIR_TIME（90s）}
+    S4[调味<br>参数注入]
+    S5[出锅<br>返回值]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D1 fill:#FFF3E0,stroke:#E65100
+    style D2 fill:#FFF3E0,stroke:#E65100
+    style D3 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

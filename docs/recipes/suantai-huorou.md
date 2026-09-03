@@ -32,6 +32,32 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 数组与链表的经典合并——肉丝（滑散数组）+ 蒜苔段（有序链表），大火快炒 merge 成一道下饭硬通货。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[蒜苔炒肉]
+    E[结束]
+    A --> B0
+    S1 --> S2
+    S2 --> D2
+    D2 -- 是 --> S3
+    D2 -- 否 --> S2
+    S3 --> S4
+    S4 --> E
+
+    S1[滑肉<br>数组遍历]
+    S2[炒蒜苔<br>链表遍历]
+    D2{蒜苔未断生}
+    S3[合炒<br>merge 分支]
+    S4[出锅<br>返回值]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D2 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

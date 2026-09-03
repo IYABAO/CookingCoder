@@ -34,6 +34,48 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 东北菜的「并行处理」经典——茄子、土豆、青椒三条线程各自过油炸熟，最后 merge 到同一个烧汁进程里，输出一盘软嫩鲜香。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[地三鲜]
+    E[结束]
+    A --> B0
+    S1 --> D1
+    D1 -- 是 --> S2
+    D1 -- 否 --> S1
+    S2 --> D2
+    D2 -- 是 --> S3
+    D2 -- 否 --> S2
+    S3 --> D3
+    D3 -- 是 --> S4
+    D3 -- 否 --> S3
+    S4 --> S5
+    S5 --> D5
+    D5 -- 是 --> S6
+    D5 -- 否 --> S5
+    S6 --> E
+
+    S1[炸土豆<br>线程1]
+    D1{土豆表面金黄且筷子能插透}
+    S2[炸茄子<br>线程2]
+    D2{茄子表面微黄且回软}
+    S3[炸青椒<br>线程3]
+    D3{青椒颜色变深}
+    S4[炒蒜香<br>中间件]
+    S5[烧汁合并<br>进程同步]
+    D5{汤汁未浓稠}
+    S6[勾芡出锅<br>数据封装]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D1 fill:#FFF3E0,stroke:#E65100
+    style D2 fill:#FFF3E0,stroke:#E65100
+    style D3 fill:#FFF3E0,stroke:#E65100
+    style D5 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

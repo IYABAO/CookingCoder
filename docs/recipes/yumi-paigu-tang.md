@@ -34,6 +34,38 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 甜党汤羹的 "依赖注入"——排骨先炖出底味，玉米胡萝卜后注入甜度，分阶段加载，终态=汤色金黄、清甜醇厚。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[玉米排骨汤]
+    E[结束]
+    A --> B0
+    S1 --> S2
+    S2 --> S3
+    S3 --> D3
+    D3 -- 是 --> S4
+    D3 -- 否 --> S3
+    S4 --> D4
+    D4 -- 是 --> S5
+    D4 -- 否 --> S4
+    S5 --> E
+
+    S1[入锅<br>初始化]
+    S2[烧开<br>启动]
+    S3[慢炖排骨<br>后台异步任务]
+    D3{未到 30min}
+    S4[加玉米胡萝卜<br>依赖注入]
+    D4{胡萝卜煮超过 40min}
+    S5[调味<br>最终提交]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D3 fill:#FFF3E0,stroke:#E65100
+    style D4 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

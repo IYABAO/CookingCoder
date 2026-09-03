@@ -32,6 +32,42 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 粤菜的 "纯函数"——输入(鲜虾)→处理(姜葱盐水白灼)→输出(鲜甜本味)，零冗余调味，无副作用，过凉锁温是最后的状态锁定。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[白灼虾]
+    E[结束]
+    A --> B0
+    S1 --> D1
+    D1 -- 是 --> S2
+    D1 -- 否 --> S1
+    S2 --> D2
+    D2 -- 是 --> S3
+    D2 -- 否 --> S2
+    S3 --> D3
+    D3 -- 是 --> S4
+    D3 -- 否 --> S3
+    S4 --> S5
+    S5 --> E
+
+    S1[烧水<br>初始化]
+    D1{水未大开（不冒泡）}
+    S2[白灼<br>纯函数执行]
+    D2{虾未完全变红卷曲}
+    S3[终态判断<br>断言]
+    D3{虾变白/肉质明显收缩}
+    S4[过凉<br>状态锁定]
+    S5[摆盘+蘸料<br>返回值]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D1 fill:#FFF3E0,stroke:#E65100
+    style D2 fill:#FFF3E0,stroke:#E65100
+    style D3 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

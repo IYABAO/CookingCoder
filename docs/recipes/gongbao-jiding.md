@@ -32,6 +32,38 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 糊辣荔枝味的经典实现——鸡丁是主进程，花生米是异步任务，碗汁是配置文件，三者 merge 就是一盘宫保。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[宫保鸡丁]
+    E[结束]
+    A --> B0
+    S1 --> S2
+    S2 --> D2
+    D2 -- 是 --> S3
+    D2 -- 否 --> S2
+    S3 --> S4
+    S4 --> D4
+    D4 -- 是 --> S5
+    D4 -- 否 --> S4
+    S5 --> E
+
+    S1[滑鸡丁<br>缓存预热]
+    S2[炒糊辣味<br>事件触发]
+    D2{辣椒变黑}
+    S3[爆香<br>中间件]
+    S4[烹碗汁<br>函数调用]
+    D4{汤汁未挂糊}
+    S5[放花生<br>异步合并]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D2 fill:#FFF3E0,stroke:#E65100
+    style D4 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

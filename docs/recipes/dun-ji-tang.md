@@ -32,6 +32,38 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 厨房里的 "后台异步任务"——鸡块+香菇扔进砂锅，小火慢炖 90 分钟，终态=汤色浓白、鸡肉酥烂，中途不用管。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[香菇炖鸡汤]
+    E[结束]
+    A --> B0
+    S1 --> S2
+    S2 --> D2
+    D2 -- 是 --> S3
+    D2 -- 否 --> S2
+    S3 --> D3
+    D3 -- 是 --> S4
+    D3 -- 否 --> S3
+    S4 --> S5
+    S5 --> E
+
+    S1[入锅<br>初始化]
+    S2[大火烧开<br>启动]
+    D2{汤面有浮沫}
+    S3[慢炖<br>后台异步任务]
+    D3{未到 STEW_TIME}
+    S4[加香菇<br>延迟加载]
+    S5[调味<br>最终提交]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D2 fill:#FFF3E0,stroke:#E65100
+    style D3 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

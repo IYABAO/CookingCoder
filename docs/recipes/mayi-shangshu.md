@@ -34,6 +34,38 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 川菜的 `main()` 函数——麻、辣、烫、嫩、酥、香、鲜七味参数一次性传入，烧一锅就能跑通。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[麻婆豆腐]
+    E[结束]
+    A --> B0
+    S1 --> D1
+    D1 -- 是 --> S2
+    D1 -- 否 --> S1
+    S2 --> S3
+    S3 --> D3
+    D3 -- 是 --> S4
+    D3 -- 否 --> S3
+    S4 --> S5
+    S5 --> E
+
+    S1[炒肉末<br>数据写入]
+    D1{肉末结块}
+    S2[炒底料<br>依赖加载]
+    S3[烧豆腐<br>while 循环]
+    D3{汤汁微沸}
+    S4[勾芡<br>函数包装返回值]
+    S5[出锅<br>装饰器模式]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D1 fill:#FFF3E0,stroke:#E65100
+    style D3 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

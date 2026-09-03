@@ -34,6 +34,38 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 川菜之首——先煮后炒，「回锅」就是二次编译：第一次煮是初始化对象，第二次煸炒是垃圾回收释放油脂，最终输出一盘灯盏窝。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[回锅肉]
+    E[结束]
+    A --> B0
+    S1 --> D1
+    D1 -- 是 --> S2
+    D1 -- 否 --> S1
+    S2 --> D2
+    D2 -- 是 --> S3
+    D2 -- 否 --> S2
+    S3 --> S4
+    S4 --> S5
+    S5 --> E
+
+    S1[煸炒<br>垃圾回收]
+    D1{肉片未出油且未呈灯盏窝}
+    S2[炒酱<br>多重继承]
+    D2{豆瓣酱出红油且甜面酱炒香}
+    S3[调味<br>父类调用]
+    S4[放青蒜<br>异步回调]
+    S5[出锅<br>返回值]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D1 fill:#FFF3E0,stroke:#E65100
+    style D2 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

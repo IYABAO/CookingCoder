@@ -32,6 +32,32 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 粤菜的 "默认构造函数"——输入(活鱼+葱姜)→处理(隔水蒸)→输出(鲜甜本味)，零冗余调味，靠蒸汽均匀传热。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[清蒸鲈鱼]
+    E[结束]
+    A --> B0
+    S1 --> S2
+    S2 --> D2
+    D2 -- 是 --> S3
+    D2 -- 否 --> S2
+    S3 --> S4
+    S4 --> E
+
+    S1[入锅<br>容器化隔离]
+    S2[蒸制<br>状态机]
+    D2{未到 STEAM_TIME}
+    S3[去腥<br>垃圾回收]
+    S4[调味<br>事件触发]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D2 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

@@ -32,6 +32,38 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 滋补汤羹的 "延迟加载"——鸡先炖 60 分钟出底味，山药作为延迟模块最后 20 分钟注入，软糯不糊汤，枸杞最后 5 分钟热加载。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[山药炖鸡汤]
+    E[结束]
+    A --> B0
+    S1 --> S2
+    S2 --> S3
+    S3 --> D3
+    D3 -- 是 --> S4
+    D3 -- 否 --> S3
+    S4 --> D4
+    D4 -- 是 --> S5
+    D4 -- 否 --> S4
+    S5 --> E
+
+    S1[入锅<br>初始化]
+    S2[烧开<br>启动]
+    S3[慢炖鸡<br>后台异步任务]
+    D3{未到 60min}
+    S4[加山药<br>延迟加载]
+    D4{山药开始糊化/汤变浑浊}
+    S5[加枸杞+调味<br>最终提交]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D3 fill:#FFF3E0,stroke:#E65100
+    style D4 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |

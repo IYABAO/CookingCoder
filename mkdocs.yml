@@ -59,7 +59,11 @@ nav:
 markdown_extensions:
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid-block
+          format: !!python/name:mermaid_fence.mermaid_format
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.highlight:
@@ -75,3 +79,10 @@ markdown_extensions:
   - md_in_html
   - toc:
       permalink: true
+
+extra_css:
+  - assets/css/mermaid.css
+
+extra_javascript:
+  - assets/js/mermaid.min.js
+  - assets/js/mermaid-init.js

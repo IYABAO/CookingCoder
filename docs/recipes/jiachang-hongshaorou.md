@@ -36,6 +36,44 @@ tags:
 > 📐 **度量标准**：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以[_spec.md（度量标准库）](_spec.md) 为准，可点击各章节锚点查看。
 > 硬菜界的「后台任务」——炒糖色是版本编译，慢炖是低优先级长时运行，收汁是资源压缩。投入时间，输出入口即化。
 
+## 流程总览（Flowchart）
+
+```mermaid
+flowchart TD
+    A[开始]
+    B0[家常红烧肉]
+    E[结束]
+    A --> B0
+    S1 --> D1
+    D1 -- 是 --> S2
+    D1 -- 否 --> S1
+    S2 --> S3
+    S3 --> S4
+    S4 --> D4
+    D4 -- 是 --> S5
+    D4 -- 否 --> S4
+    S5 --> D5
+    D5 -- 是 --> S6
+    D5 -- 否 --> S5
+    S6 --> E
+
+    S1[炒糖色<br>版本编译]
+    D1{糖色呈枣红且冒小泡}
+    S2[翻炒上色<br>数据写入]
+    S3[加调料调味<br>依赖注入]
+    S4[慢炖<br>后台任务]
+    D4{炖煮时间未到}
+    S5[收汁<br>资源压缩]
+    D5{汤汁未浓稠挂糊}
+    S6[出锅<br>返回值]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D1 fill:#FFF3E0,stroke:#E65100
+    style D4 fill:#FFF3E0,stroke:#E65100
+    style D5 fill:#FFF3E0,stroke:#E65100
+```
+
 ## 常量定义（Constants）
 
 | 常量名 | 值 | 来源 |
