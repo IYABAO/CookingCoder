@@ -13,8 +13,11 @@ Write-Host "==> 1/2 构建并部署到 gh-pages (gh-deploy --force)" -Foreground
 if ($LASTEXITCODE -ne 0) { throw "gh-deploy 失败" }
 
 Write-Host "==> 2/2 验证 gh-pages 分支 CNAME" -ForegroundColor Cyan
-git fetch origin gh-pages 2>&1 | Out-Null
-$cname = git show "origin/gh-pages:CNAME" 2>$null
+$oldEA = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
+git fetch origin gh-pages 2>$null | Out-Null
+$cname = (git show "origin/gh-pages:CNAME" 2>$null | Select-Object -First 1).Trim()
+$ErrorActionPreference = $oldEA
 if ($cname -eq "cook.plbear.com") {
     Write-Host "CNAME 已锁定: cook.plbear.com ✅" -ForegroundColor Green
 } else {
