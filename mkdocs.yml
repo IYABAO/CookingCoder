@@ -1,0 +1,77 @@
+site_name: CookingCoder 菜谱
+site_url: https://iyabao.github.io/CookingCoder/
+site_description: 程序员的极客菜谱库——40 道家常菜，用编程思维讲清楚火候、油温、翻车点
+site_author: Allen Lin
+repo_url: https://github.com/IYABAO/CookingCoder
+repo_name: CookingCoder
+copyright: MIT License © CookingCoder
+
+theme:
+  name: material
+  language: zh
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+    - toc.follow
+  palette:
+    - scheme: default
+      primary: deep orange
+      accent: orange
+      toggle:
+        icon: material/weather-night
+        name: 切换到深色模式
+    - scheme: slate
+      primary: deep orange
+      accent: orange
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到浅色模式
+
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+      lang:
+        - zh
+        - en
+  - tags:
+
+nav:
+  - 首页: index.md
+  - 菜谱库: recipes/index.md
+  - 分类:
+      - 按菜系: cuisine.md
+      - 按口味: taste.md
+      - 按人群: crowd.md
+      - 按技法: tech.md
+  - 标签: tags.md
+  - 度量标准: recipes/_spec.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - footnotes
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
