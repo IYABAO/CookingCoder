@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cook.plbear.com/sitemap.xml
