@@ -1,0 +1,1962 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="程序员的极客菜谱库——40 道家常菜，用编程思维讲清楚火候、油温、翻车点">
+      
+      
+        <meta name="author" content="Allen Lin">
+      
+      
+        <link rel="canonical" href="https://iyabao.github.io/CookingCoder/gitbook-alternatives-research/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>CookingCoder 菜谱展示方案选型调研报告 - CookingCoder 菜谱</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cookingcoder" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="CookingCoder 菜谱" class="md-header__button md-logo" aria-label="CookingCoder 菜谱" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CookingCoder 菜谱
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CookingCoder 菜谱展示方案选型调研报告
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="orange"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="orange"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/IYABAO/CookingCoder" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CookingCoder
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../recipes/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  菜谱库
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../cuisine/" class="md-tabs__link">
+          
+  
+  
+  分类
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  标签
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../recipes/_spec/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  度量标准
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CookingCoder 菜谱" class="md-nav__button md-logo" aria-label="CookingCoder 菜谱" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    CookingCoder 菜谱
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/IYABAO/CookingCoder" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CookingCoder
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recipes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    菜谱库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分类
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    分类
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cuisine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    按菜系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taste/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    按口味
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crowd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    按人群
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tech/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    按技法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    标签
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recipes/_spec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    度量标准
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、结论先行
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、全方案对比总表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、国外方案分方案简评
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、国外方案分方案简评">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-mkdocs-material-for-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. MkDocs + Material for MkDocs ⭐ 首选
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-docusaurus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Docusaurus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-vitepress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. VitePress
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-astro-starlight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Astro Starlight
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-docsify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Docsify
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-mdbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. mdBook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-read-the-docs-sphinx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Read the Docs / Sphinx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-gitbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. GitBook（云产品）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、国内方案分方案简评
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、国内方案分方案简评">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-vuepress-theme-hopevuepress-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. vuepress-theme-hope（VuePress 2）⭐ 备选
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-halo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Halo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-yuque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 语雀（Yuque）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-feishu-wiki" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 飞书知识库（Feishu Wiki）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-kancloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 看云（KanCloud）⚠️ 已边缘化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-gitee-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Gitee Pages ⛔ 已下线
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-vdoingvuepress-theme-vdoing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Vdoing（vuepress-theme-vdoing）⚠️ 已停滞
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-wolai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Wolai（我来）⚠️ 高风险
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、推荐结论与理由
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、推荐结论与理由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mkdocs-material-for-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        首选：MkDocs + Material for MkDocs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vuepress-theme-hopevuepress-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        备选：vuepress-theme-hope（VuePress 2）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#astro-starlight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        技术探索向：Astro Starlight
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mkdocs-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、迁移落地路径（以首选 MkDocs + Material 为例）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="六、迁移落地路径（以首选 MkDocs + Material 为例）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 1：环境初始化（约 30 分钟）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mkdocsyml-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 2：配置 mkdocs.yml（约 30 分钟）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-40-md-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 3：迁移 40 个菜谱 md（约 1 小时，可脚本化）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 4：生成标签索引页和分类页（约 30 分钟）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 5：本地预览与构建
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 6：部署（选择以下任一方案）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="步骤 6：部署（选择以下任一方案）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agithub-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方案 A：GitHub Pages（推荐，免费 + 国内可加速）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bvercel-cloudflare-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方案 B：Vercel / Cloudflare Pages（免费，国内访问一般）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-oss-esa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方案 C：阿里云 OSS + ESA 边缘构建（国内访问最快，用户已有链路）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推荐部署组合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7cicd-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 7：CI/CD 自动化（可选，约 1 小时）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        七、已淘汰方案速查表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        八、关键来源汇总
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="八、关键来源汇总">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        国外方案
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        国内方案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="cookingcoder">CookingCoder 菜谱展示方案选型调研报告<a class="headerlink" href="#cookingcoder" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>调研基准</strong>：2026 年 9 月 3 日 ｜ 数据来源：各项目官方文档、GitHub API 实时抓取、官方公告
+<strong>项目背景</strong>：CookingCoder 已有 40 个结构化 Markdown 菜谱（<code>recipes/*.md</code>），frontmatter 含五维标签（cuisine 菜系 / taste 口味 / crowd 人群 / tech 技法 / time 耗时），需以"类 GitBook"形态（左侧目录树 + 右侧正文 + 搜索 + 标签筛选）公开展示。</p>
+</blockquote>
+<hr />
+<h2 id="_1">一、结论先行<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>方案</th>
+<th>核心理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>首选</strong></td>
+<td><strong>MkDocs + Material for MkDocs</strong></td>
+<td>唯一开箱即用支持 frontmatter tags 自动生成分类页；部署极简（pip + yml）；中文界面完整；视觉高度接近 GitBook；纯静态可部署任意平台；Material 主题极活跃（2026-08 仍在更新）</td>
+</tr>
+<tr>
+<td><strong>备选</strong></td>
+<td><strong>vuepress-theme-hope（VuePress 2）</strong></td>
+<td>中文生态最好（作者为中国开发者）；博客模式原生支持标签页+分类页；直接吃 .md + frontmatter；MIT 开源；2026-05 仍在高频更新；适合偏好 Vue/JS 技术栈的场景</td>
+</tr>
+<tr>
+<td><strong>技术探索向</strong></td>
+<td>Astro Starlight</td>
+<td>frontmatter 有类型化 schema 校验；content collections API 开发五维交叉筛选体验最佳；Pagefind 中文搜索好；但社区较小（9k stars）、中文文档少、无内置标签页</td>
+</tr>
+</tbody>
+</table>
+<p><strong>已明确淘汰</strong>：Gitee Pages（已正式下线）、看云（已边缘化/迁移期）、Vdoing（基于已停维的 VuePress 1.x，2023 年后无更新）、mdBook（无 frontmatter/标签/中文搜索）、Read the Docs/Sphinx（Markdown 非一等公民）、GitBook 云（不开源+标签不可用）、Wolai（财务危机后状态不明）。</p>
+<hr />
+<h2 id="_2">二、全方案对比总表<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>评分说明：★★★★★ 优秀 / ★★★★ 良好 / ★★★ 一般 / ★★ 较弱 / ★ 不适用 / ⛔ 已不可用</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>开源/License</th>
+<th>托管形态</th>
+<th>部署难度</th>
+<th>中文支持</th>
+<th>Markdown复用</th>
+<th>搜索(中文)</th>
+<th>标签/筛选能力</th>
+<th>生态活跃度</th>
+<th>菜谱适配度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MkDocs + Material</strong></td>
+<td>MIT / BSD-2</td>
+<td>自托管静态</td>
+<td>低</td>
+<td>★★★★</td>
+<td>★★★★★</td>
+<td>★★★★</td>
+<td>★★★★ (唯一内置tags)</td>
+<td>★★★★★</td>
+<td>★★★★★</td>
+</tr>
+<tr>
+<td><strong>vuepress-theme-hope</strong></td>
+<td>MIT</td>
+<td>自托管静态</td>
+<td>低-中</td>
+<td>★★★★★</td>
+<td>★★★★★</td>
+<td>★★★★</td>
+<td>★★★★ (博客模式tags+分类)</td>
+<td>★★★★★</td>
+<td>★★★★★</td>
+</tr>
+<tr>
+<td><strong>VitePress</strong></td>
+<td>MIT</td>
+<td>自托管静态</td>
+<td>低</td>
+<td>★★★★</td>
+<td>★★★★★</td>
+<td>★★★ (需配分词)</td>
+<td>★★ (无内置,需开发)</td>
+<td>★★★★★</td>
+<td>★★★</td>
+</tr>
+<tr>
+<td><strong>Docusaurus</strong></td>
+<td>MIT</td>
+<td>自托管静态</td>
+<td>低-中</td>
+<td>★★★★</td>
+<td>★★★★★</td>
+<td>★★★ (需Algolia/插件)</td>
+<td>★★★ (blog有tags,docs需开发)</td>
+<td>★★★★★</td>
+<td>★★★</td>
+</tr>
+<tr>
+<td><strong>Astro Starlight</strong></td>
+<td>MIT</td>
+<td>自托管静态</td>
+<td>中</td>
+<td>★★★</td>
+<td>★★★★</td>
+<td>★★★★ (Pagefind中文好)</td>
+<td>★★★ (无内置,但开发体验好)</td>
+<td>★★★★</td>
+<td>★★★★</td>
+</tr>
+<tr>
+<td><strong>Docsify</strong></td>
+<td>MIT</td>
+<td>自托管(零构建)</td>
+<td>极低</td>
+<td>★★★★</td>
+<td>★★★★★</td>
+<td>★★★ (子串匹配无分词)</td>
+<td>★★ (无内置,需开发)</td>
+<td>★★★ (发版停滞3年)</td>
+<td>★★★</td>
+</tr>
+<tr>
+<td><strong>mdBook</strong></td>
+<td>MPL-2.0</td>
+<td>自托管静态</td>
+<td>低</td>
+<td>★★ (中文搜索差)</td>
+<td>★★★</td>
+<td>★ (无中文分词)</td>
+<td>★ (完全无tags)</td>
+<td>★★★★</td>
+<td>★</td>
+</tr>
+<tr>
+<td><strong>Read the Docs/Sphinx</strong></td>
+<td>MIT / BSD</td>
+<td>云+自托管</td>
+<td>云低/自托管高</td>
+<td>★★★</td>
+<td>★★ (Markdown非一等公民)</td>
+<td>★★★</td>
+<td>★ (无tags)</td>
+<td>★★★★</td>
+<td>★</td>
+</tr>
+<tr>
+<td><strong>GitBook(云)</strong></td>
+<td>闭源SaaS</td>
+<td>纯云托管</td>
+<td>低</td>
+<td>★★★</td>
+<td>★★★</td>
+<td>★★★</td>
+<td>★ (frontmatter不可用)</td>
+<td>商业活跃</td>
+<td>★★</td>
+</tr>
+<tr>
+<td><strong>Halo</strong></td>
+<td>GPL-3.0</td>
+<td>纯自托管(需服务器)</td>
+<td>中</td>
+<td>★★★★★</td>
+<td>★★ (存数据库非.md)</td>
+<td>★★★</td>
+<td>★★ (博客标签,非文档目录树)</td>
+<td>★★★★★</td>
+<td>★★</td>
+</tr>
+<tr>
+<td><strong>语雀</strong></td>
+<td>闭源SaaS</td>
+<td>纯云托管</td>
+<td>低</td>
+<td>★★★★★</td>
+<td>★★ (导入后转自有格式)</td>
+<td>★★★★</td>
+<td>★★ (手动目录+标签)</td>
+<td>商业活跃</td>
+<td>★★</td>
+</tr>
+<tr>
+<td><strong>飞书知识库</strong></td>
+<td>闭源SaaS</td>
+<td>纯云托管</td>
+<td>低</td>
+<td>★★★★★</td>
+<td>★★ (转自有块格式)</td>
+<td>★★★★</td>
+<td>★★ (层级目录+标签)</td>
+<td>商业活跃</td>
+<td>★</td>
+</tr>
+<tr>
+<td><strong>看云</strong></td>
+<td>闭源SaaS</td>
+<td>纯云托管</td>
+<td>低</td>
+<td>★★★★</td>
+<td>★★★</td>
+<td>★★</td>
+<td>★★</td>
+<td>⚠️ 已边缘化</td>
+<td>★</td>
+</tr>
+<tr>
+<td><strong>Gitee Pages</strong></td>
+<td>—</td>
+<td>云托管</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>⛔ <strong>已下线</strong></td>
+<td>⛔</td>
+</tr>
+<tr>
+<td><strong>Vdoing</strong></td>
+<td>MIT</td>
+<td>自托管静态</td>
+<td>低</td>
+<td>★★★★</td>
+<td>★★★★</td>
+<td>★★</td>
+<td>★★★</td>
+<td>⚠️ 2023后停滞</td>
+<td>★★</td>
+</tr>
+<tr>
+<td><strong>Wolai</strong></td>
+<td>闭源SaaS</td>
+<td>纯云托管</td>
+<td>低</td>
+<td>★★★★</td>
+<td>★★</td>
+<td>★★</td>
+<td>★★</td>
+<td>⚠️ 状态不明</td>
+<td>★</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_3">三、国外方案分方案简评<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="1-mkdocs-material-for-mkdocs">1. MkDocs + Material for MkDocs ⭐ 首选<a class="headerlink" href="#1-mkdocs-material-for-mkdocs" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>开源</strong>：MkDocs 核心 BSD-2-Clause（约 22.4k stars）；Material 主题 MIT（约 27.4k stars）</li>
+<li><strong>托管</strong>：纯自托管静态站，<code>mkdocs build</code> 产出纯 HTML/CSS/JS</li>
+<li><strong>部署</strong>：<code>pip install mkdocs-material</code> → 写 <code>mkdocs.yml</code> → <code>mkdocs build</code>，约 2 小时上线</li>
+<li><strong>中文</strong>：Material 内置 60+ 语言含简体中文，界面中文化完整；搜索基于 lunr.js，配置 <code>search.separator</code> 后中文可用</li>
+<li><strong>Markdown</strong>：原生吃 .md，frontmatter（meta）完整支持，Material 扩展了 admonition/tabs/grids 等丰富语法</li>
+<li><strong>搜索</strong>：内置客户端全文搜索（lunr.js），零外部依赖</li>
+<li><strong>标签/筛选</strong>：★ 8 方案中<strong>唯一开箱即用支持 frontmatter tags 自动生成分类索引页</strong>（<code>/tags/</code>）；另有 blog 插件支持分类/标签/归档。五维标签需映射为带前缀的一维标签（如 <code>cuisine:川菜</code>、<code>taste:麻辣</code>）</li>
+<li><strong>复用成本</strong>：放入 <code>docs/</code> 目录 + 配置 nav 即可，frontmatter 标签可直接被利用</li>
+<li><strong>活跃度</strong>：Material 主题极活跃（最后推送 2026-08-30，6764 commits）；MkDocs 核心进入稳定成熟期（最后推送 2025-10，功能稳定）</li>
+<li><strong>劣势</strong>：① Python 生态，插件开发需 Python 知识（但日常使用零代码）；② Material Insiders 版部分高级功能需付费赞助；③ 内置 tags 是一维标签云，五维交叉筛选（同时按菜系+口味+人群）超出开箱能力，需自定义开发；④ MkDocs 核心更新缓慢</li>
+<li><strong>地址</strong>：<a href="https://squidfunk.github.io/mkdocs-material/">Material 官网</a> ｜ <a href="https://github.com/squidfunk/mkdocs-material">Material GitHub</a> ｜ <a href="https://www.mkdocs.org/">MkDocs 官网</a></li>
+</ul>
+<h3 id="2-docusaurus">2. Docusaurus<a class="headerlink" href="#2-docusaurus" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>开源</strong>：MIT，约 66.2k stars（8 方案中最高）</li>
+<li><strong>托管</strong>：纯自托管静态站，React 技术栈</li>
+<li><strong>部署</strong>：<code>npm init docusaurus@latest</code> 脚手架，约半天上线</li>
+<li><strong>中文</strong>：官方维护中文文档站，i18n 内置成熟；搜索默认推荐 Algolia DocSearch（开源项目免费），也可用 <code>docusaurus-search-local</code> 社区插件（支持中文分词）</li>
+<li><strong>Markdown</strong>：原生支持 .md 和 .mdx（可嵌入 React 组件），frontmatter 完整支持</li>
+<li><strong>搜索</strong>：默认无内置搜索，需配置 Algolia 或社区插件</li>
+<li><strong>标签/筛选</strong>：blog 插件内置 tags 功能可自动生成标签索引页；但 docs 核心内容按自定义 frontmatter 字段做多维筛选需自行开发 React 组件</li>
+<li><strong>复用成本</strong>：放入 <code>docs/</code> 目录即可，需配置 sidebar（可自动生成）</li>
+<li><strong>活跃度</strong>：Meta 官方维护，极活跃（最后推送 2026-09-01，最新 v3.10.2）</li>
+<li><strong>劣势</strong>：① React 技术栈锁定，定制主题需懂 React/JSX；② 默认不带搜索，需额外配置；③ 构建产物较重（React runtime）；④ docs 多维筛选非开箱即用</li>
+<li><strong>地址</strong>：<a href="https://docusaurus.io/">官网</a> ｜ <a href="https://docusaurus.io/zh-CN">中文文档</a> ｜ <a href="https://github.com/facebook/docusaurus">GitHub</a></li>
+</ul>
+<h3 id="3-vitepress">3. VitePress<a class="headerlink" href="#3-vitepress" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>开源</strong>：MIT，约 18.3k stars</li>
+<li><strong>托管</strong>：纯自托管静态站，Vite + Vue</li>
+<li><strong>部署</strong>：一个 <code>.vitepress/config.ts</code> + <code>docs/</code> 目录，Vite 构建秒级，约 2-3 小时上线</li>
+<li><strong>中文</strong>：Vue 团队维护，官方有中文版；中文社区活跃；内置本地搜索基于 FlexSearch，中文需手动配置 <code>search.options.locales</code></li>
+<li><strong>Markdown</strong>：原生吃 .md，frontmatter 完整支持，可在 md 中使用 Vue 组件</li>
+<li><strong>搜索</strong>：内置本地全文搜索（FlexSearch，零外部依赖），也支持 Algolia</li>
+<li><strong>标签/筛选</strong>：侧边栏可自动从文件结构生成（<code>sidebar: 'auto'</code>）；<strong>无内置 tags/分类页</strong>，五维筛选需自行开发 Vue 组件（可利用 <code>createContentLoader</code> API）</li>
+<li><strong>复用成本</strong>：放入目录即用，frontmatter 原样保留</li>
+<li><strong>活跃度</strong>：Vue 团队/VoidZero 维护，极活跃（最后推送 2026-09-02，v2.0.0-alpha 已发布）</li>
+<li><strong>劣势</strong>：① 无内置标签/分类页，五维筛选完全需自定义开发；② 中文搜索默认质量一般，需配分词；③ v2.0 仍在 alpha</li>
+<li><strong>地址</strong>：<a href="https://vitepress.dev/">官网</a> ｜ <a href="https://github.com/vuejs/vitepress">GitHub</a></li>
+</ul>
+<h3 id="4-astro-starlight">4. Astro Starlight<a class="headerlink" href="#4-astro-starlight" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>开源</strong>：MIT，约 9.2k stars</li>
+<li><strong>托管</strong>：纯自托管静态站，Astro 构建（默认零 JS）</li>
+<li><strong>部署</strong>：需了解 content collections 概念，约半天上手</li>
+<li><strong>中文</strong>：i18n 内置有中文界面；搜索基于 Pagefind（Rust 静态搜索引擎），<strong>对中文分词支持较好</strong>；中文社区文档相对较少</li>
+<li><strong>Markdown</strong>：原生支持 .md 和 .mdx，frontmatter 有<strong>类型化 schema 校验</strong>（zod），可强类型约束五维标签字段——独特优势</li>
+<li><strong>搜索</strong>：内置 Pagefind 本地全文搜索，中文支持好，零外部依赖</li>
+<li><strong>标签/筛选</strong>：无内置 tags 分类页，但可通过 <code>getCollection()</code> API 查询所有文档 frontmatter，自行构建按任意字段筛选的动态页面。由于 frontmatter 有类型 schema，多维筛选开发体验在 8 方案中最好</li>
+<li><strong>复用成本</strong>：需放入 <code>src/content/docs/</code> 并定义 collection schema（可宽松配置）</li>
+<li><strong>活跃度</strong>：Astro 官方团队维护，活跃（最后推送 2026-09-02，最新 @astrojs/starlight@0.41.3，已支持 Astro 7）</li>
+<li><strong>劣势</strong>：① star 数相对较少（9k+），社区和插件生态不如 Docusaurus/VitePress/MkDocs；② 中文社区文档不够丰富；③ 无内置标签页；④ 版本号仍在 0.x；⑤ Astro 学习曲线</li>
+<li><strong>地址</strong>：<a href="https://starlight.astro.build/">官网</a> ｜ <a href="https://github.com/withastro/starlight">GitHub</a></li>
+</ul>
+<h3 id="5-docsify">5. Docsify<a class="headerlink" href="#5-docsify" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>开源</strong>：MIT，约 31.5k stars</li>
+<li><strong>托管</strong>：纯自托管，<strong>无需构建</strong>——一个 index.html + CDN 引入即可</li>
+<li><strong>部署</strong>：极低，约 30 分钟上线。零构建、零配置</li>
+<li><strong>中文</strong>：官方有完整中文版；中文社区活跃；搜索插件支持中文但<strong>基于子串匹配无分词</strong></li>
+<li><strong>Markdown</strong>：原生吃 .md（运行时加载 marked 渲染），frontmatter 需插件</li>
+<li><strong>搜索</strong>：内置全文搜索插件（客户端 IndexedDB），中文为子串匹配无分词</li>
+<li><strong>标签/筛选</strong>：无内置 tags/分类，frontmatter 五维标签需插件 + 自定义客户端开发</li>
+<li><strong>复用成本</strong>：直接放入目录即用，零配置——8 方案中复用成本最低</li>
+<li><strong>活跃度</strong>：develop 分支极活跃（最后推送 2026-09-03 当天），但<strong>正式 release 停在 v4.13.1（2023-06），已超 3 年未发新版</strong>，v5 在 develop 分支开发中。处于"开发活跃但发版停滞"状态</li>
+<li><strong>劣势</strong>：① 客户端渲染，<strong>SEO 极差</strong>（百度等国内搜索引擎难以索引）；② 正式版 3 年未发新 release；③ 无构建步骤导致首屏加载慢（每页异步加载 md 再渲染）；④ frontmatter/标签生态弱；⑤ 大型项目（100+ 页）性能下降</li>
+<li><strong>地址</strong>：<a href="https://docsify.js.org/">官网</a> ｜ <a href="https://docsify.js.org/#/zh-cn/">中文文档</a> ｜ <a href="https://github.com/docsifyjs/docsify">GitHub</a></li>
+</ul>
+<h3 id="6-mdbook">6. mdBook<a class="headerlink" href="#6-mdbook" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>开源</strong>：MPL-2.0，约 22.1k stars</li>
+<li><strong>托管</strong>：纯自托管静态站，Rust 单二进制</li>
+<li><strong>部署</strong>：<code>cargo install mdbook</code> + <code>book.toml</code> + <code>SUMMARY.md</code>，约 2 小时</li>
+<li><strong>中文</strong>：界面有中文翻译；<strong>内置搜索对中文支持差</strong>（基于英文空格分词逻辑，连续中文无法切分）</li>
+<li><strong>Markdown</strong>：原生吃 .md；<strong>frontmatter 支持非常有限</strong>，非核心功能</li>
+<li><strong>搜索</strong>：内置客户端搜索，但中文分词差</li>
+<li><strong>标签/筛选</strong>：目录树必须手动在 <code>SUMMARY.md</code> 中定义（不自动生成）；<strong>完全没有 tags/分类筛选功能</strong></li>
+<li><strong>复用成本</strong>：需手动编写 SUMMARY.md 逐个列出 40 个文件；frontmatter 五维标签基本无法利用——复用成本偏高</li>
+<li><strong>活跃度</strong>：Rust 官方维护，活跃（最后推送 2026-09-02，最新 v0.5.3），但迭代偏保守</li>
+<li><strong>劣势</strong>：① 中文搜索质量差；② frontmatter 支持极弱；③ 无标签/分类筛选；④ 目录树需手动维护；⑤ 主题定制能力有限；⑥ 生态偏 Rust 社区</li>
+<li><strong>结论</strong>：菜谱核心需求（frontmatter 标签 + 中文搜索 + 分类筛选）全部不满足，<strong>不推荐</strong></li>
+<li><strong>地址</strong>：<a href="https://rust-lang.github.io/mdBook/">官方文档</a> ｜ <a href="https://github.com/rust-lang/mdBook">GitHub</a></li>
+</ul>
+<h3 id="7-read-the-docs-sphinx">7. Read the Docs / Sphinx<a class="headerlink" href="#7-read-the-docs-sphinx" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>开源</strong>：平台代码 MIT（约 8.4k stars）；Sphinx BSD-2-Clause</li>
+<li><strong>托管</strong>：两者皆可——readthedocs.org 云平台免费托管开源文档；自托管复杂度高（Django + Celery + Redis + PostgreSQL）</li>
+<li><strong>部署</strong>：云平台低（关联仓库自动构建）；自托管高</li>
+<li><strong>中文</strong>：Sphinx 有官方中文文档；搜索基于 Whoosh，中文支持一般</li>
+<li><strong>Markdown</strong>：★ <strong>Sphinx 原生使用 reStructuredText，Markdown 非一等公民</strong>，需安装 MyST-Parser 扩展</li>
+<li><strong>搜索</strong>：内置服务端全文搜索（Whoosh），中文一般</li>
+<li><strong>标签/筛选</strong>：目录树通过 toctree 手动定义；无 frontmatter 标签筛选</li>
+<li><strong>复用成本</strong>：较高——需配置 MyST 解析 Markdown，手动编写 toctree，frontmatter 无法利用</li>
+<li><strong>活跃度</strong>：Read the Docs Inc. 维护，活跃（最新 release 2026.05.26）；Sphinx 成熟稳定</li>
+<li><strong>劣势</strong>：① Markdown 非一等公民；② 自托管复杂度高；③ 无标签/分类筛选；④ 默认主题老旧；⑤ 中文搜索一般；⑥ 对菜谱非技术文档场景，Sphinx 的 API 文档等核心能力无用</li>
+<li><strong>结论</strong>：技术栈与 Markdown 菜谱文件不匹配，<strong>不推荐</strong></li>
+<li><strong>地址</strong>：<a href="https://readthedocs.org/">云平台</a> ｜ <a href="https://github.com/readthedocs/readthedocs.org">GitHub</a> ｜ <a href="https://www.sphinx-doc.org/">Sphinx</a></li>
+</ul>
+<h3 id="8-gitbook">8. GitBook（云产品）<a class="headerlink" href="#8-gitbook" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>开源</strong>：当前云产品<strong>不开源</strong>；旧版前端 GPL-3.0（遗留），旧版 CLI 无 License 且已实质停止维护（最后推送 2024-06）</li>
+<li><strong>托管</strong>：纯云托管 SaaS，不支持自托管</li>
+<li><strong>部署</strong>：低，注册后 Git Sync 关联仓库即可</li>
+<li><strong>中文</strong>：界面有基础多语言，中文 UI 覆盖一般；中文搜索分词有限</li>
+<li><strong>Markdown</strong>：支持 .md，有自家 block 扩展；frontmatter 支持有限</li>
+<li><strong>搜索</strong>：内置全文搜索 + AI Assistant，中文一般</li>
+<li><strong>标签/筛选</strong>：目录树手动组织；<strong>不支持按自定义 frontmatter 字段做筛选或自动生成分类页</strong>——菜谱场景硬伤</li>
+<li><strong>复用成本</strong>：可 Git Sync 批量导入，但需按页面层级重组，frontmatter 五维标签无法被利用</li>
+<li><strong>活跃度</strong>：商业公司维护，云产品迭代活跃（AI 功能持续更新）；旧版开源 CLI 已死</li>
+<li><strong>劣势</strong>：① 不开源、无法自托管；② frontmatter 自定义字段无法驱动筛选/分类，五维标签完全无法利用；③ 主题定制受云平台限制；④ 免费版有成员和功能限制</li>
+<li><strong>结论</strong>：开源项目通常要求可自托管，且标签体系无法利用，<strong>不推荐</strong></li>
+<li><strong>地址</strong>：<a href="https://www.gitbook.com/">官网</a> ｜ <a href="https://github.com/GitBookIO/gitbook">旧版前端(遗留)</a></li>
+</ul>
+<hr />
+<h2 id="_4">四、国内方案分方案简评<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="1-vuepress-theme-hopevuepress-2">1. vuepress-theme-hope（VuePress 2）⭐ 备选<a class="headerlink" href="#1-vuepress-theme-hopevuepress-2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>开源</strong>：MIT，约 3.5k stars</li>
+<li><strong>托管</strong>：纯自托管静态站，可部署任意静态托管</li>
+<li><strong>部署</strong>：<code>npm init vuepress-theme-hope@latest</code> 一键初始化，约 1-2 小时上线</li>
+<li><strong>中文</strong>：★ <strong>原生中文支持极好</strong>——作者为中国开发者（Mister-Hope），文档完整中文版，界面默认中文，内置中文搜索，中文社区活跃</li>
+<li><strong>Markdown</strong>：直接吃 .md，VuePress 2 原生支持 frontmatter，可解析自定义字段</li>
+<li><strong>搜索</strong>：内置搜索插件（支持中文全文检索），也可接入 Algolia DocSearch</li>
+<li><strong>标签/筛选</strong>：★ 左侧目录树自动生成；<strong>博客模式原生支持标签页和分类页</strong>；frontmatter 自定义字段可通过 blog 配置生成分类/标签索引页，支持多维度标签。五维交叉筛选需少量自定义客户端组件</li>
+<li><strong>复用成本</strong>：低，直接放入 <code>docs/</code> 目录即可，frontmatter 原生支持</li>
+<li><strong>活跃度</strong>：★ 非常活跃（5777 commits，482 releases，最新 v2.0.0-rc.107 2026-05-14，基于 VuePress 2 + Vite 7 + Vue 3）</li>
+<li><strong>劣势</strong>：① v2 仍在 RC 阶段（功能稳定但正式版未发布）；② 构建产物较大（含 Vue 3 运行时）；③ 五维交叉筛选非开箱即用</li>
+<li><strong>地址</strong>：<a href="https://theme-hope.vuejs.press">官网</a> ｜ <a href="https://github.com/vuepress-theme-hope/vuepress-theme-hope">GitHub</a></li>
+</ul>
+<h3 id="2-halo">2. Halo<a class="headerlink" href="#2-halo" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>开源</strong>：GPL-3.0（社区版），约 32k+ stars</li>
+<li><strong>托管</strong>：纯自托管，需自有服务器（Docker 部署），无官方云托管</li>
+<li><strong>部署</strong>：中——Docker 一键启动，但需自有服务器、域名备案、反向代理、HTTPS</li>
+<li><strong>中文</strong>：原生中文，国内最活跃的开源 CMS 之一，中文社区非常活跃</li>
+<li><strong>Markdown</strong>：编辑器支持 Markdown，但<strong>文章存储在数据库中（H2/MySQL/PostgreSQL），不是直接吃 .md 文件</strong></li>
+<li><strong>搜索</strong>：需安装搜索插件，中文分词质量一般</li>
+<li><strong>标签/筛选</strong>：支持文章分类和标签（原生），可生成分类页/标签页；但<strong>左侧目录树不是原生功能</strong>，需主题支持；五维交叉筛选无法实现</li>
+<li><strong>复用成本</strong>：中-高——需批量导入到数据库，frontmatter 映射需额外开发</li>
+<li><strong>活跃度</strong>：★ 非常活跃（6192 commits，265 releases，最新 v2.25.4 2026-06-24，已商业化）</li>
+<li><strong>劣势</strong>：① 定位是博客/CMS，不是文档站，类 GitBook 目录树需主题插件拼凑；② 需要服务器运维（数据库、备份、升级），对 40 篇菜谱的轻量项目过重；③ Markdown 文件不是 source of truth，与仓库 md 无法双向同步，破坏"文档即代码"工作流；④ GPL-3.0 协议要求二次开发开源</li>
+<li><strong>结论</strong>：功能强大但定位不匹配 + 运维成本过重，<strong>不推荐用于菜谱展示</strong></li>
+<li><strong>地址</strong>：<a href="https://halo.run">官网</a> ｜ <a href="https://github.com/halo-dev/halo">GitHub</a> ｜ <a href="https://gitee.com/halo-dev/halo">Gitee</a></li>
+</ul>
+<h3 id="3-yuque">3. 语雀（Yuque）<a class="headerlink" href="#3-yuque" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>开源</strong>：闭源 SaaS（蚂蚁集团）</li>
+<li><strong>托管</strong>：纯云托管</li>
+<li><strong>部署</strong>：低，注册即用</li>
+<li><strong>中文</strong>：原生中文，中文搜索质量好（自研搜索引擎），中文社区活跃</li>
+<li><strong>Markdown</strong>：编辑器支持 Markdown，但<strong>导入后转为语雀自有富文本格式</strong>；frontmatter 会被当作正文，不会被解析为元数据；批量导出能力有限</li>
+<li><strong>搜索</strong>：内置全文检索，中文搜索质量较好</li>
+<li><strong>标签/筛选</strong>：支持知识库目录树（手动编排）和文档标签，但<strong>不支持按自定义 frontmatter 字段自动生成分类筛选页</strong></li>
+<li><strong>复用成本</strong>：中——可批量导入，但 frontmatter 丢失、目录需手动重建、标签需重新关联</li>
+<li><strong>活跃度</strong>：用户量千万级，蚂蚁集团持续运营，2025-2026 年仍有更新</li>
+<li><strong>劣势</strong>：① 数据锁定严重，导入后转自有格式，frontmatter 完全丢失，不利于"源码即文档"工作流；② 免费版有空间和成员限制，自定义域名/高级搜索需付费；③ 不支持 Git PR/版本 diff 等开源协作流程</li>
+<li><strong>结论</strong>：适合内部协作，不适合开源项目公开展示，<strong>不推荐</strong></li>
+<li><strong>地址</strong>：<a href="https://www.yuque.com">官网</a></li>
+</ul>
+<h3 id="4-feishu-wiki">4. 飞书知识库（Feishu Wiki）<a class="headerlink" href="#4-feishu-wiki" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>开源</strong>：闭源 SaaS（字节跳动）</li>
+<li><strong>托管</strong>：纯云托管</li>
+<li><strong>部署</strong>：低，注册即用，支持"互联网公开"分享</li>
+<li><strong>中文</strong>：原生中文，中文搜索质量好（字节搜索技术）</li>
+<li><strong>Markdown</strong>：支持 Markdown 导入，但<strong>导入后转为飞书自有块格式</strong>，frontmatter 不被解析</li>
+<li><strong>搜索</strong>：内置全文检索，中文质量好</li>
+<li><strong>标签/筛选</strong>：支持层级目录树和文档标签，但不支持按自定义字段生成分类筛选页</li>
+<li><strong>复用成本</strong>：中——批量导入需 API 或工具，frontmatter 丢失</li>
+<li><strong>活跃度</strong>：字节跳动核心产品，用户量亿级，持续高频更新</li>
+<li><strong>劣势</strong>：① 公开分享 URL 是飞书域名（<code>feishu.cn/wiki/...</code>），无法绑定自定义域名，品牌感差；② 数据锁定 + 不支持 Git 驱动的开源协作；③ 定位是企业协作，公开分享不是核心场景</li>
+<li><strong>结论</strong>：不适合开源项目专业展示，<strong>不推荐</strong></li>
+<li><strong>地址</strong>：<a href="https://www.feishu.cn">官网</a></li>
+</ul>
+<h3 id="5-kancloud">5. 看云（KanCloud）⚠️ 已边缘化<a class="headerlink" href="#5-kancloud" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>开源</strong>：闭源 SaaS（顶想信息/ThinkPHP 团队旗下）</li>
+<li><strong>托管</strong>：纯云托管</li>
+<li><strong>部署</strong>：低，注册即用，专注"书籍"形态</li>
+<li><strong>中文</strong>：原生中文</li>
+<li><strong>Markdown</strong>：原生 Markdown 编辑器，支持导入 GitHub 文档、导出 EPUB/PDF/WORD</li>
+<li><strong>搜索</strong>：内置书籍内搜索，中文质量一般</li>
+<li><strong>标签/筛选</strong>：章节目录树是核心形态，但不支持按自定义字段生成分类筛选页</li>
+<li><strong>活跃度</strong>：⚠️ <strong>已边缘化</strong>——官网首页明确标注"看云写作服务已经迁移到更适合企业的知识管理"，引导用户迁移至"顶想云知识管理"；看云本身仍可访问但处于维护状态，2022 年宣布迁移后新功能投入极少</li>
+<li><strong>劣势</strong>：① 产品已进入维护/迁移期，官方主动引导迁移，未来存在停服风险；② 生态停滞，插件/主题几乎不更新；③ 开源协作能力差</li>
+<li><strong>结论</strong>：有停服风险，<strong>不推荐作为长期展示平台</strong></li>
+<li><strong>地址</strong>：<a href="https://www.kancloud.cn">官网</a></li>
+</ul>
+<h3 id="6-gitee-pages">6. Gitee Pages ⛔ 已下线<a class="headerlink" href="#6-gitee-pages" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>状态</strong>：⛔ <strong>功能已正式下线</strong>。Gitee 官方帮助页面（https://gitee.com/help/articles/4136）标题已明确标注"Gitee Pages（功能已下线）"</li>
+<li><strong>历史情况</strong>：此前仅支持 Jekyll/Hugo/Hexo 三种静态生成器自动编译，不支持 MkDocs/VitePress/Docusaurus/VuePress/Docsify；曾因合规要求暂停新用户开通（需实名认证），后续正式下线</li>
+<li><strong>结论</strong>：已不可用，<strong>菜谱项目不能依赖此方案</strong>。应转向 GitHub Pages + 国内 CDN 加速，或阿里云 OSS/ESA、Vercel、Cloudflare Pages 等替代托管</li>
+</ul>
+<h3 id="7-vdoingvuepress-theme-vdoing">7. Vdoing（vuepress-theme-vdoing）⚠️ 已停滞<a class="headerlink" href="#7-vdoingvuepress-theme-vdoing" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>开源</strong>：MIT，约 3.8k stars</li>
+<li><strong>托管</strong>：纯自托管静态站</li>
+<li><strong>中文</strong>：原生中文，作者为中国开发者（xugaoyi）</li>
+<li><strong>Markdown</strong>：直接吃 .md，VuePress 1.x 支持 frontmatter</li>
+<li><strong>标签/筛选</strong>：左侧目录树自动生成是核心卖点；支持博客标签页和分类页</li>
+<li><strong>活跃度</strong>：⚠️ <strong>已停滞</strong>——最新版 v1.12.9（2023-08-04），<strong>主题代码最后更新为 2023 年 8 月</strong>；基于<strong>已停止维护的 VuePress 1.x</strong>；作者已基本停止功能更新</li>
+<li><strong>劣势</strong>：① 基于已停维的 VuePress 1.x，存在安全漏洞和兼容性风险；② 搜索能力较弱；③ 生态停滞，无新功能/bug 修复，无 VuePress 2.x 迁移计划</li>
+<li><strong>结论</strong>：不适合新项目，<strong>不推荐</strong>。如需 VuePress 生态应选 vuepress-theme-hope（基于 VuePress 2）</li>
+<li><strong>地址</strong>：<a href="https://doc.xugaoyi.com">官网</a> ｜ <a href="https://github.com/xugaoyi/vuepress-theme-vdoing">GitHub</a></li>
+</ul>
+<h3 id="8-wolai">8. Wolai（我来）⚠️ 高风险<a class="headerlink" href="#8-wolai" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>开源</strong>：闭源 SaaS</li>
+<li><strong>状态</strong>：⚠️ <strong>待核实/高风险</strong>——曾是国内最知名的 Notion 替代品，但 2023-2024 年经历严重财务困难，团队大规模裁员，产品更新停滞；后被收购（具体收购方和运营状态待核实），2025-2026 年产品状态不明朗</li>
+<li><strong>结论</strong>：存在数据安全和停服风险，<strong>不建议作为开源项目的长期展示平台</strong></li>
+<li><strong>地址</strong>：<a href="https://www.wolai.com">官网</a>（状态待核实）</li>
+</ul>
+<hr />
+<h2 id="_5">五、推荐结论与理由<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="mkdocs-material-for-mkdocs">首选：MkDocs + Material for MkDocs<a class="headerlink" href="#mkdocs-material-for-mkdocs" title="Permanent link">&para;</a></h3>
+<p><strong>推荐理由（按权重排序）</strong>：</p>
+<ol>
+<li><strong>唯一开箱即用的 frontmatter 标签分类</strong>：Material 主题内置 tags 功能，在 frontmatter 中写 <code>tags:</code> 即可自动生成 <code>/tags/</code> 标签索引页和按标签筛选的列表页。这是所有调研方案中唯一不需要额外开发就能利用 frontmatter 元数据生成分类的方案，与菜谱五维标签体系天然契合。</li>
+<li><strong>部署极简，零代码日常维护</strong>：<code>pip install mkdocs-material</code> + 一个 <code>mkdocs.yml</code> 配置文件 + <code>mkdocs build</code>，不需要写 React/Vue/Astro 组件。对一个 Go/PHP 全栈开发者而言，YAML 配置比前端框架学习成本低得多。</li>
+<li><strong>中文界面完整</strong>：Material 内置 60+ 语言含简体中文，界面中文化开箱即用，不需要额外配置 i18n。</li>
+<li><strong>视觉高度接近 GitBook</strong>：默认左侧目录树 + 右侧正文 + 顶部导航，是公认的最美观的 MkDocs 主题，定制通过 CSS 变量即可，无需前端框架知识。</li>
+<li><strong>纯静态产物，部署灵活</strong>：构建产物为纯 HTML/CSS/JS，可部署到 GitHub Pages、Vercel、Cloudflare Pages、阿里云 OSS/ESA 等任意静态托管。Gitee Pages 已下线不影响。</li>
+<li><strong>生态极活跃</strong>：Material 主题最后推送 2026-08-30，持续高频更新；MkDocs 核心虽更新慢但功能稳定成熟。</li>
+<li><strong>40 个 md 复用成本极低</strong>：直接放入 <code>docs/</code> 目录即可，frontmatter 标签可直接被 Material 的 tags 功能利用。</li>
+</ol>
+<p><strong>五维标签的落地方式</strong>：将现有 frontmatter 中的五个独立字段映射为带维度前缀的标签，例如：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">tags</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cuisine:川菜</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">taste:麻辣</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">crowd:儿童</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tech:炒</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">time:30分钟</span>
+</code></pre></div>
+Material 会自动生成 <code>/tags/</code> 索引页，点击任一标签即可筛选出对应菜谱。如需五维交叉筛选（同时选菜系+口味），可通过 Material 的 tags 额外开发一个客户端过滤组件，或使用 blog 插件的分类功能。</p>
+<h3 id="vuepress-theme-hopevuepress-2">备选：vuepress-theme-hope（VuePress 2）<a class="headerlink" href="#vuepress-theme-hopevuepress-2" title="Permanent link">&para;</a></h3>
+<p><strong>适用场景</strong>：如果偏好 Vue/JS 技术栈、希望中文社区支持更好、或未来需要更复杂的前端交互（如五维交叉筛选组件），vuepress-theme-hope 是最佳替代。</p>
+<p><strong>与首选的差异</strong>：
+- 中文生态更好（作者为中国开发者，文档/社区/问题解答全中文）
+- 博客模式原生支持标签页 + 分类页，多维度标签配置更灵活
+- 技术栈为 Vue 3 + Vite，前端定制能力更强（但需要 Vue 知识）
+- v2 仍在 RC 阶段，正式版未发布（但功能已稳定）
+- 构建产物比 MkDocs 大（含 Vue 运行时）</p>
+<h3 id="astro-starlight">技术探索向：Astro Starlight<a class="headerlink" href="#astro-starlight" title="Permanent link">&para;</a></h3>
+<p><strong>适用场景</strong>：如果愿意投入开发资源实现真正的五维交叉筛选（同时按菜系+口味+人群+技法+耗时过滤），Starlight 的 content collections + 类型化 frontmatter schema 提供了最好的开发体验。Pagefind 中文搜索也是所有方案中质量最好的。但社区较小、中文文档少、无内置标签页，需要更多自行开发。</p>
+<hr />
+<h2 id="mkdocs-material">六、迁移落地路径（以首选 MkDocs + Material 为例）<a class="headerlink" href="#mkdocs-material" title="Permanent link">&para;</a></h2>
+<h3 id="1-30">步骤 1：环境初始化（约 30 分钟）<a class="headerlink" href="#1-30" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 安装 Python（如未安装，推荐 3.11+）</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-material
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 在项目根目录初始化</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">cd</span><span class="w"> </span>E:<span class="se">\g</span>ithub<span class="se">\C</span>ookingCoder
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>mkdocs<span class="w"> </span>new<span class="w"> </span>.
+</code></pre></div>
+<p>这会生成 <code>mkdocs.yml</code> 配置文件和 <code>docs/</code> 目录。</p>
+<h3 id="2-mkdocsyml-30">步骤 2：配置 mkdocs.yml（约 30 分钟）<a class="headerlink" href="#2-mkdocsyml-30" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">site_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CookingCoder 菜谱</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">site_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://iyabao.github.io/CookingCoder/</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">theme</span><span class="p">:</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">material</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zh</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">features</span><span class="p">:</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">navigation.tabs</span><span class="w">          </span><span class="c1"># 顶部导航标签</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">navigation.sections</span><span class="w">      </span><span class="c1"># 左侧目录分组可折叠</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">navigation.expand</span><span class="w">        </span><span class="c1"># 默认展开目录</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">search.suggest</span><span class="w">           </span><span class="c1"># 搜索建议</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">search.highlight</span><span class="w">         </span><span class="c1"># 搜索高亮</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">content.tabs.link</span><span class="w">        </span><span class="c1"># 内容标签</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tags</span><span class="w">                      </span><span class="c1"># 启用标签功能</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span><span class="nt">palette</span><span class="p">:</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">      </span><span class="nt">toggle</span><span class="p">:</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">        </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">material/brightness-7</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">切换深色模式</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">slate</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">      </span><span class="nt">toggle</span><span class="p">:</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">        </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">material/brightness-4</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">切换浅色模式</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="nt">plugins</span><span class="p">:</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">search</span><span class="p">:</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">      </span><span class="nt">separator</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;[\s\-,:!=\[\]()&quot;/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&amp;[lg]t;&#39;</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">tags</span><span class="p">:</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">      </span><span class="nt">tags_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tags.md</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="nt">nav</span><span class="p">:</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">首页</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">index.md</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">菜谱</span><span class="p">:</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">按菜系</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cuisine/index.md</span><span class="w">  </span><span class="c1"># 可后续生成</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">全部菜谱</span><span class="p">:</span><span class="w">  </span><span class="c1"># 自动从 recipes 目录生成</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">标签</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tags.md</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">关于</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">about.md</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="nt">markdown_extensions</span><span class="p">:</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admonition</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.details</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.tabbed</span><span class="p">:</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="w">      </span><span class="nt">alternate_style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tables</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">footnotes</span>
+</code></pre></div>
+<h3 id="3-40-md-1">步骤 3：迁移 40 个菜谱 md（约 1 小时，可脚本化）<a class="headerlink" href="#3-40-md-1" title="Permanent link">&para;</a></h3>
+<p>将 <code>recipes/*.md</code> 复制到 <code>docs/recipes/</code> 目录。需要做的 frontmatter 适配：</p>
+<p><strong>现有格式</strong>（示例）：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nn">---</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">红烧肉</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">cuisine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">川菜</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nt">taste</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">甜咸</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nt">crowd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">全家</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nt">tech</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">烧</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nt">time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60分钟</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nn">---</span>
+</code></pre></div></p>
+<p><strong>适配为 Material tags 格式</strong>：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nn">---</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">红烧肉</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">tags</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cuisine:川菜</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">taste:甜咸</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">crowd:全家</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tech:烧</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">time:60分钟</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="nn">---</span>
+</code></pre></div></p>
+<p>可以写一个简单的 Python 脚本批量转换（约 20 行代码），避免手动修改 40 个文件。</p>
+<h3 id="4-30">步骤 4：生成标签索引页和分类页（约 30 分钟）<a class="headerlink" href="#4-30" title="Permanent link">&para;</a></h3>
+<p>Material 会自动生成 <code>/tags/</code> 页面。如需按菜系/口味等维度分别生成分类索引页，可：
+- 使用 Material 的 blog 插件（需 Insiders 赞助版），或
+- 写一个简单的构建脚本，在 <code>mkdocs build</code> 前扫描所有 md 的 frontmatter，自动生成 <code>docs/cuisine/川菜.md</code>、<code>docs/taste/麻辣.md</code> 等分类页（每个分类页列出对应菜谱的链接）</p>
+<h3 id="5">步骤 5：本地预览与构建<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mkdocs<span class="w"> </span>serve<span class="w">    </span><span class="c1"># 本地预览 http://127.0.0.1:8000</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>mkdocs<span class="w"> </span>build<span class="w">    </span><span class="c1"># 构建到 site/ 目录</span>
+</code></pre></div>
+<h3 id="6">步骤 6：部署（选择以下任一方案）<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<h4 id="agithub-pages">方案 A：GitHub Pages（推荐，免费 + 国内可加速）<a class="headerlink" href="#agithub-pages" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 安装 gh-deploy 插件</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-gh-deploy
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># 一键部署到 GitHub Pages</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>mkdocs<span class="w"> </span>gh-deploy
+</code></pre></div>
+<p>部署后访问 <code>https://iyabao.github.io/CookingCoder/</code>。国内访问 GitHub Pages 不稳定，建议：
+- 绑定自定义域名 + 使用阿里云 CDN/Cloudflare CDN 加速，或
+- 同时部署到阿里云 OSS + CDN（见方案 C）</p>
+<h4 id="bvercel-cloudflare-pages">方案 B：Vercel / Cloudflare Pages（免费，国内访问一般）<a class="headerlink" href="#bvercel-cloudflare-pages" title="Permanent link">&para;</a></h4>
+<p>将 GitHub 仓库关联到 Vercel 或 Cloudflare Pages，构建命令设为 <code>mkdocs build</code>，输出目录设为 <code>site/</code>。Cloudflare Pages 在国内有边缘节点，访问速度优于 Vercel。</p>
+<h4 id="c-oss-esa">方案 C：阿里云 OSS + ESA 边缘构建（国内访问最快，用户已有链路）<a class="headerlink" href="#c-oss-esa" title="Permanent link">&para;</a></h4>
+<ol>
+<li>在阿里云 OSS 创建静态网站托管 Bucket</li>
+<li>本地 <code>mkdocs build</code> 后将 <code>site/</code> 目录上传到 OSS（可使用 <code>ossutil</code> 或 CI 自动化）</li>
+<li>配置阿里云 ESA（边缘安全加速）CDN 加速 OSS 源站</li>
+<li>绑定自定义域名（需备案）</li>
+</ol>
+<p>用户已有阿里云 ESA 链路，此方案国内访问速度最快，且完全在自有基础设施内。</p>
+<h4 id="_6">推荐部署组合<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><strong>GitHub Pages（主，面向国际/开源社区）+ 阿里云 OSS+ESA CDN 加速（面向国内访问）</strong></p>
+<p>通过 GitHub Actions 自动化：push 到 main 分支后，自动 <code>mkdocs build</code>，同时部署到 GitHub Pages 和阿里云 OSS。两套站点共享同一份构建产物，维护成本为零。</p>
+</blockquote>
+<h3 id="7cicd-1">步骤 7：CI/CD 自动化（可选，约 1 小时）<a class="headerlink" href="#7cicd-1" title="Permanent link">&para;</a></h3>
+<p>在 <code>.github/workflows/deploy.yml</code> 中配置：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy CookingCoder</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nt">on</span><span class="p">:</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nt">jobs</span><span class="p">:</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.11&#39;</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install mkdocs-material</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mkdocs build</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to GitHub Pages</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v4</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">          </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">          </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./site</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">      </span><span class="c1"># 可选：同时部署到阿里云 OSS</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to Aliyun OSS</span>
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">manyuanrong/setup-ossutil@v2</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="w">          </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.OSS_ENDPOINT }}</span>
+<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="w">          </span><span class="nt">access-key-id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.OSS_ACCESS_KEY_ID }}</span>
+<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="w">          </span><span class="nt">access-key-secret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.OSS_ACCESS_KEY_SECRET }}</span>
+<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ossutil cp -rf site/ oss://your-bucket-name/</span>
+</code></pre></div>
+<hr />
+<h2 id="_7">七、已淘汰方案速查表<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>淘汰原因</th>
+<th>严重程度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gitee Pages</td>
+<td>官方已正式下线，无法新部署</td>
+<td>⛔ 硬伤</td>
+</tr>
+<tr>
+<td>看云</td>
+<td>已边缘化，官方引导迁移，存在停服风险</td>
+<td>⚠️ 高风险</td>
+</tr>
+<tr>
+<td>Vdoing</td>
+<td>基于已停维的 VuePress 1.x，主题代码 2023 年后无更新</td>
+<td>⚠️ 高风险</td>
+</tr>
+<tr>
+<td>Wolai</td>
+<td>财务危机后被收购，产品状态不明朗</td>
+<td>⚠️ 高风险</td>
+</tr>
+<tr>
+<td>mdBook</td>
+<td>无 frontmatter 支持、无标签筛选、中文搜索差</td>
+<td>❌ 需求不匹配</td>
+</tr>
+<tr>
+<td>Read the Docs/Sphinx</td>
+<td>Markdown 非一等公民、无标签筛选、主题老旧</td>
+<td>❌ 需求不匹配</td>
+</tr>
+<tr>
+<td>GitBook 云</td>
+<td>不开源无法自托管、frontmatter 标签不可用</td>
+<td>❌ 开源项目不适用</td>
+</tr>
+<tr>
+<td>语雀</td>
+<td>数据锁定严重、frontmatter 丢失、不支持 Git 协作</td>
+<td>❌ 开源项目不适用</td>
+</tr>
+<tr>
+<td>飞书知识库</td>
+<td>无法绑定自定义域名、数据锁定、不支持 Git 协作</td>
+<td>❌ 开源项目不适用</td>
+</tr>
+<tr>
+<td>Halo</td>
+<td>定位博客/CMS 非文档站、需服务器运维、md 非 source of truth</td>
+<td>❌ 定位不匹配</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_8">八、关键来源汇总<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h3 id="_9">国外方案<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<ul>
+<li>MkDocs Material：<a href="https://squidfunk.github.io/mkdocs-material/">官网</a> ｜ <a href="https://github.com/squidfunk/mkdocs-material">GitHub</a> ｜ <a href="https://github.com/mkdocs/mkdocs">MkDocs 核心</a></li>
+<li>Docusaurus：<a href="https://docusaurus.io/">官网</a> ｜ <a href="https://docusaurus.io/zh-CN">中文文档</a> ｜ <a href="https://github.com/facebook/docusaurus">GitHub</a></li>
+<li>VitePress：<a href="https://vitepress.dev/">官网</a> ｜ <a href="https://github.com/vuejs/vitepress">GitHub</a></li>
+<li>Astro Starlight：<a href="https://starlight.astro.build/">官网</a> ｜ <a href="https://github.com/withastro/starlight">GitHub</a></li>
+<li>Docsify：<a href="https://docsify.js.org/">官网</a> ｜ <a href="https://docsify.js.org/#/zh-cn/">中文文档</a> ｜ <a href="https://github.com/docsifyjs/docsify">GitHub</a></li>
+<li>mdBook：<a href="https://rust-lang.github.io/mdBook/">官方文档</a> ｜ <a href="https://github.com/rust-lang/mdBook">GitHub</a></li>
+<li>Read the Docs：<a href="https://readthedocs.org/">云平台</a> ｜ <a href="https://github.com/readthedocs/readthedocs.org">GitHub</a> ｜ <a href="https://www.sphinx-doc.org/">Sphinx</a></li>
+<li>GitBook：<a href="https://www.gitbook.com/">官网</a> ｜ <a href="https://github.com/GitBookIO/gitbook">旧版前端(遗留)</a></li>
+</ul>
+<h3 id="_10">国内方案<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<ul>
+<li>vuepress-theme-hope：<a href="https://theme-hope.vuejs.press">官网</a> ｜ <a href="https://github.com/vuepress-theme-hope/vuepress-theme-hope">GitHub</a></li>
+<li>Halo：<a href="https://halo.run">官网</a> ｜ <a href="https://github.com/halo-dev/halo">GitHub</a> ｜ <a href="https://gitee.com/halo-dev/halo">Gitee</a></li>
+<li>语雀：<a href="https://www.yuque.com">官网</a></li>
+<li>飞书：<a href="https://www.feishu.cn">官网</a></li>
+<li>看云：<a href="https://www.kancloud.cn">官网</a></li>
+<li>Gitee Pages（已下线）：<a href="https://gitee.com/help/articles/4136">官方帮助页</a></li>
+<li>Vdoing：<a href="https://doc.xugaoyi.com">官网</a> ｜ <a href="https://github.com/xugaoyi/vuepress-theme-vdoing">GitHub</a></li>
+<li>Wolai：<a href="https://www.wolai.com">官网</a>（状态待核实）</li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>报告生成时间</strong>：2026-09-03 ｜ <strong>数据基准</strong>：GitHub API 实时抓取 + 各项目官方文档核验</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      MIT License © CookingCoder
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
