@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/css/mermaid.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -664,6 +666,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        流程总览（Flowchart）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#constants" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -800,6 +813,33 @@
 <p>📐 <strong>度量标准</strong>：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以<a href="../_spec/">_spec.md（度量标准库）</a> 为准，可点击各章节锚点查看。
 川菜里的「事件驱动架构」——汤底(事件总线)煮沸→肉片(事件消费者)入锅→泼油(事件触发)瞬间激活麻辣香气，30 分钟完成一次高并发风味分发。</p>
 </blockquote>
+<h2 id="flowchart">流程总览（Flowchart）<a class="headerlink" href="#flowchart" title="Permanent link">&para;</a></h2>
+<div class="mermaid-block">flowchart TD
+    A[开始]
+    B0[水煮肉片]
+    E[结束]
+    A --&gt; B0
+    S1 --&gt; S2
+    S2 --&gt; S3
+    S3 --&gt; S4
+    S4 --&gt; D4
+    D4 -- 是 --&gt; S5
+    D4 -- 否 --&gt; S4
+    S5 --&gt; S6
+    S6 --&gt; E
+
+    S1[焯豆芽&lt;br&gt;初始化底层数据]
+    S2[炒底料&lt;br&gt;构建事件总线]
+    S3[煮汤&lt;br&gt;事件总线预热]
+    S4[下肉片&lt;br&gt;事件消费者接入]
+    D4{肉片未变色}
+    S5[泼油&lt;br&gt;事件触发]
+    S6[完成&lt;br&gt;返回值]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D4 fill:#FFF3E0,stroke:#E65100</div>
+
 <h2 id="constants">常量定义（Constants）<a class="headerlink" href="#constants" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1095,6 +1135,10 @@
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
     
   </body>

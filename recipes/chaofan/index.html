@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/css/mermaid.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -664,6 +666,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        流程总览（Flowchart）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#constants" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -807,6 +820,29 @@
 <p>📐 <strong>度量标准</strong>：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以<a href="../_spec/">_spec.md（度量标准库）</a> 为准，可点击各章节锚点查看。
 分布式系统的经典案例——米饭（主节点）+ 鸡蛋（计算节点）+ 杂蔬（数据节点），大火快炒实现最终一致性，粒粒分明是唯一的共识算法。</p>
 </blockquote>
+<h2 id="flowchart">流程总览（Flowchart）<a class="headerlink" href="#flowchart" title="Permanent link">&para;</a></h2>
+<div class="mermaid-block">flowchart TD
+    A[开始] --&gt; B[米饭打散&lt;br&gt;数据清洗]
+    A --&gt; C[杂蔬焯水&lt;br&gt;编译期优化]
+    B --&gt; D[炒蛋&lt;br&gt;独立节点渲染]
+    C --&gt; D
+    D --&gt; E[炒配料&lt;br&gt;子节点合并]
+    E --&gt; F{米饭是否结块?}
+    F -- 是 --&gt; F1[锅铲压散&lt;br&gt;while 循环]
+    F1 --&gt; F
+    F -- 否 --&gt; G[合炒&lt;br&gt;最终一致性]
+    G --&gt; H{颜色是否均匀?}
+    H -- 否 --&gt; H1[继续翻炒]
+    H1 --&gt; H
+    H -- 是 --&gt; I[调味&lt;br&gt;面向对象继承]
+    I --&gt; J[撒葱出锅&lt;br&gt;return]
+    J --&gt; K[结束]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style D fill:#FFF3E0,stroke:#BF360C
+    style G fill:#FFCCBC,stroke:#BF360C
+    style J fill:#C8E6C9,stroke:#2E7D32</div>
+
 <h2 id="constants">常量定义（Constants）<a class="headerlink" href="#constants" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1055,6 +1091,10 @@
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
     
   </body>

@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/css/mermaid.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -664,6 +666,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        流程总览（Flowchart）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#constants" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -800,6 +813,29 @@
 <p>📐 <strong>度量标准</strong>：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以<a href="../_spec/">_spec.md（度量标准库）</a> 为准，可点击各章节锚点查看。
 程序员的 "Hello World" 菜谱——输入(肉丝+青椒)→处理(大火快炒)→输出(下饭菜)，15 分钟编译通过。</p>
 </blockquote>
+<h2 id="flowchart">流程总览（Flowchart）<a class="headerlink" href="#flowchart" title="Permanent link">&para;</a></h2>
+<div class="mermaid-block">flowchart TD
+    A[开始]
+    B0[青椒肉丝]
+    E[结束]
+    A --&gt; B0
+    S1 --&gt; S2
+    S2 --&gt; D2
+    D2 -- 是 --&gt; S3
+    D2 -- 否 --&gt; S2
+    S3 --&gt; S4
+    S4 --&gt; E
+
+    S1[滑肉&lt;br&gt;数组遍历]
+    S2[炒椒&lt;br&gt;独立模块]
+    D2{青椒出水}
+    S3[合炒&lt;br&gt;合并分支]
+    S4[出锅&lt;br&gt;返回值]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D2 fill:#FFF3E0,stroke:#E65100</div>
+
 <h2 id="constants">常量定义（Constants）<a class="headerlink" href="#constants" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1015,6 +1051,10 @@
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
     
   </body>

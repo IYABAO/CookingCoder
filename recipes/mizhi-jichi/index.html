@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/css/mermaid.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -664,6 +666,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        流程总览（Flowchart）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#constants" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -807,6 +820,41 @@
 <p>📐 <strong>度量标准</strong>：本菜谱所有模糊表述（块/勺/火候/油温/熟度）均以<a href="../_spec/">_spec.md（度量标准库）</a> 为准，可点击各章节锚点查看。
 家常菜的 "序列化+状态机"——鸡翅煎至金黄(序列化定型)→ 小火焖烧入味(状态机)→ 蜂蜜收汁亮壳(最终提交)，外焦里嫩咸甜回甘。</p>
 </blockquote>
+<h2 id="flowchart">流程总览（Flowchart）<a class="headerlink" href="#flowchart" title="Permanent link">&para;</a></h2>
+<div class="mermaid-block">flowchart TD
+    A[开始]
+    B0[蜜汁鸡翅]
+    E[结束]
+    A --&gt; B0
+    S1 --&gt; D1
+    D1 -- 是 --&gt; S2
+    D1 -- 否 --&gt; S1
+    S2 --&gt; S3
+    S3 --&gt; S4
+    S4 --&gt; D4
+    D4 -- 是 --&gt; S5
+    D4 -- 否 --&gt; S4
+    S5 --&gt; D5
+    D5 -- 是 --&gt; S6
+    D5 -- 否 --&gt; S5
+    S6 --&gt; E
+
+    S1[煎翅&lt;br&gt;序列化]
+    D1{鸡翅粘锅}
+    S2[爆香&lt;br&gt;事件触发]
+    S3[调味&lt;br&gt;面向对象继承]
+    S4[焖烧&lt;br&gt;状态机]
+    D4{汤汁未浓稠}
+    S5[收汁+蜂蜜&lt;br&gt;最终提交]
+    D5{蜂蜜下锅后超过 3min 还没收汁}
+    S6[出锅&lt;br&gt;返回值]
+
+    style A fill:#FFE0B2,stroke:#E64A19
+    style E fill:#C8E6C9,stroke:#2E7D32
+    style D1 fill:#FFF3E0,stroke:#E65100
+    style D4 fill:#FFF3E0,stroke:#E65100
+    style D5 fill:#FFF3E0,stroke:#E65100</div>
+
 <h2 id="constants">常量定义（Constants）<a class="headerlink" href="#constants" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1086,6 +1134,10 @@
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
     
   </body>

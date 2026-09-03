@@ -1,0 +1,21 @@
+/* CookingCoder: Mermaid 流程图渲染样式 */
+.mermaid-rendered {
+  display: flex;
+  justify-content: center;
+  margin: 1.2em 0;
+  overflow-x: auto;
+  padding: 8px 0;
+}
+.mermaid-rendered svg {
+  max-width: 100%;
+  height: auto;
+}
+.mermaid-error {
+  padding: 12px 16px;
+  border: 1px solid #e64a19;
+  border-radius: 8px;
+  background: #fff3e0;
+  color: #8c3a1a;
+  font-size: 0.9em;
+  margin: 1.2em 0;
+}
