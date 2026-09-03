@@ -324,7 +324,7 @@ mkdocs new .
 
 ```yaml
 site_name: CookingCoder 菜谱
-site_url: https://iyabao.github.io/CookingCoder/
+site_url: https://cook.plbear.com/
 theme:
   name: material
   language: zh
@@ -423,7 +423,7 @@ pip install mkdocs-gh-deploy
 mkdocs gh-deploy
 ```
 
-部署后访问 `https://iyabao.github.io/CookingCoder/`。国内访问 GitHub Pages 不稳定，建议：
+部署后访问 `https://cook.plbear.com/`。国内访问 GitHub Pages 不稳定，建议：
 - 绑定自定义域名 + 使用阿里云 CDN/Cloudflare CDN 加速，或
 - 同时部署到阿里云 OSS + CDN（见方案 C）
 
