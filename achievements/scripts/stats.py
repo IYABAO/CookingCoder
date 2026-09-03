@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 HOMEWORK_DIR = ROOT / "homework"
+RECIPES_DIR = ROOT / "recipes"
 
 # 积分规则
 POINTS = {"done": 10, "photo": 5, "new_recipe": 5, "original": 10, "improve": 5}
@@ -25,6 +26,8 @@ BADGES = [
     ("🔥 燃烧吧厨艺", "streak", 4),
     ("🏃 持之以恒", "streak", 8),
     ("🧘 厨艺修行者", "streak", 12),
+    ("🎨 技法达人", "tech", 5),
+    ("🌍 菜系探险家", "cuisine", 3),
 ]
 
 
@@ -80,10 +83,67 @@ def calc_points(weeks: list[int]) -> dict:
     return {"total": total, "breakdown": breakdown}
 
 
-def unlock_badges(count: int, streak: int) -> list[str]:
+def _parse_frontmatter_field(text: str, field: str) -> list[str]:
+    """从 markdown 文本中提取 frontmatter 指定字段的值（适配 YAML 数组和字符串）。"""
+    m = re.match(r"^---\s*\n(.*?)\n---\s*\n", text, re.DOTALL)
+    if not m:
+        return []
+    for line in m.group(1).splitlines():
+        if ":" in line:
+            k, v = line.split(":", 1)
+            if k.strip() == field:
+                v = v.strip().strip('"').strip("'")
+                if v.startswith("["):
+                    inner = v.strip()[1:-1].strip()
+                    if not inner:
+                        return []
+                    return [item.strip().strip('"').strip("'").strip() for item in inner.split(",") if item.strip()]
+                return [v] if v else []
+    return []
+
+
+def calc_recipe_coverage() -> dict:
+    """扫描 recipes/ 目录，统计菜谱库中 tech 和 cuisine 的去重数量。
+
+    返回 {"tech_count": int, "cuisine_count": int, "tech_list": [...], "cuisine_list": [...]}
+    这是项目级成就，代表菜谱库的丰富度。
+    """
+    tech_set = set()
+    cuisine_set = set()
+    if not RECIPES_DIR.exists():
+        return {"tech_count": 0, "cuisine_count": 0, "tech_list": [], "cuisine_list": []}
+    for f in sorted(RECIPES_DIR.glob("*.md")):
+        if f.name.startswith("_"):
+            continue
+        try:
+            text = f.read_text(encoding="utf-8")
+        except Exception:
+            continue
+        for t in _parse_frontmatter_field(text, "tech"):
+            tech_set.add(t)
+        for c in _parse_frontmatter_field(text, "cuisine"):
+            cuisine_set.add(c)
+    return {
+        "tech_count": len(tech_set),
+        "cuisine_count": len(cuisine_set),
+        "tech_list": sorted(tech_set),
+        "cuisine_list": sorted(cuisine_set),
+    }
+
+
+def unlock_badges(count: int, streak: int, tech_count: int = 0, cuisine_count: int = 0) -> list[str]:
     result = []
     for name, kind, threshold in BADGES:
-        value = count if kind == "count" else streak
+        if kind == "count":
+            value = count
+        elif kind == "streak":
+            value = streak
+        elif kind == "tech":
+            value = tech_count
+        elif kind == "cuisine":
+            value = cuisine_count
+        else:
+            continue
         if value >= threshold:
             result.append(name)
     return result
@@ -98,6 +158,7 @@ def main() -> None:
     count = len(weeks)
     streak = calc_streak(weeks)
     points = calc_points(weeks)
+    coverage = calc_recipe_coverage()
 
     print("=" * 46)
     print("🍳  CookingCoder 打卡统计")
@@ -107,13 +168,28 @@ def main() -> None:
     print(f"总积分：{points['total']} 分")
     print(f"  明细：{points['breakdown']}")
     print("-" * 46)
-    badges = unlock_badges(count, streak)
+    print(f"菜谱库覆盖：技法 {coverage['tech_count']} 种 {coverage['tech_list']}")
+    print(f"           菜系 {coverage['cuisine_count']} 种 {coverage['cuisine_list']}")
+    print("-" * 46)
+    badges = unlock_badges(count, streak, coverage["tech_count"], coverage["cuisine_count"])
     print("已解锁徽章：" if badges else "暂无徽章，继续加油！")
     for b in badges:
         print(f"  {b}")
     print("=" * 46)
     if count:
-        print(f"下一个目标：累计 {min(x for x in [5,10,20,50] if x > count)} 次 / 连续 {min(x for x in [2,4,8,12] if x > streak)} 周")
+        next_count = min((x for x in [5, 10, 20, 50] if x > count), default=None)
+        next_streak = min((x for x in [2, 4, 8, 12] if x > streak), default=None)
+        parts = []
+        if next_count:
+            parts.append(f"累计 {next_count} 次")
+        if next_streak:
+            parts.append(f"连续 {next_streak} 周")
+        if coverage["tech_count"] < 5:
+            parts.append(f"技法覆盖 {5 - coverage['tech_count']} 种")
+        if coverage["cuisine_count"] < 3:
+            parts.append(f"菜系覆盖 {3 - coverage['cuisine_count']} 种")
+        if parts:
+            print(f"下一个目标：{' / '.join(parts)}")
     else:
         print("下一个目标：完成第一次作业！🥚 新手厨师在等你")
 
