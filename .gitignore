@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# 一次性校验/迁移脚本（保留在本地，不入库）
+scripts/_*.py
