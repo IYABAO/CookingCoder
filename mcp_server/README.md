@@ -8,7 +8,9 @@
 | --- | --- |
 | `get_recipe` | 按菜名查菜谱（完整食材 + 步骤） |
 | `list_recipes` | 按标签/难度筛选菜谱 |
+| `search_by_constraint` | 自然语言约束查询（如“30分钟内、川菜、下饭”） |
 | `recommend_recipe` | 随机推荐一道菜（可限定难度/标签） |
+| `get_weekly_plan` | 本周及后续几周的推荐（按 `recipes/_index.md` 轮换） |
 
 ## 安装
 
@@ -63,6 +65,9 @@ async def main():
         # 随机推荐
         rec = await client.call_tool("recommend_recipe", {"query": {"difficulty": "简单"}})
         print(rec.content[0].text)
+        # 本周及后续四周推荐
+        plan = await client.call_tool("get_weekly_plan", {"query": {"weeks": 4}})
+        print(plan.content[0].text)
 
 asyncio.run(main())
 ```

@@ -15,6 +15,7 @@
 from __future__ import annotations
 
 import re
+from datetime import date, timedelta
 from pathlib import Path
 
 from fastmcp import FastMCP
@@ -22,6 +23,11 @@ from pydantic import BaseModel, Field
 
 # 菜谱库根目录（仓库根目录 /recipes，即 mcp_server 的上两级）
 RECIPES_DIR = Path(__file__).resolve().parents[2] / "recipes"
+
+# 每周推荐轮换的锚点：2026-08-31 是 ISO 2026-W36 的周一，index.md 明确从 W36 起算
+WEEKLY_INDEX_FILE = RECIPES_DIR / "_index.md"
+WEEKLY_ANCHOR = date(2026, 8, 31)
+WEEKLY_HEADING = "## 每周推荐轮换"
 
 mcp = FastMCP(
     "cookingcoder",
@@ -229,6 +235,73 @@ def _recipe_summary(r: dict) -> dict:
     }
 
 
+# ---- 每周推荐轮换 ----
+
+
+def _load_weekly_order() -> list[str]:
+    """从 recipes/_index.md 的「每周推荐轮换」段解析 40 个有序菜名。
+
+    找不到索引文件、标题或编号列表时返回空列表，由调用方显式报错。
+    """
+    if not WEEKLY_INDEX_FILE.is_file():
+        return []
+    text = WEEKLY_INDEX_FILE.read_text(encoding="utf-8")
+    if WEEKLY_HEADING not in text:
+        return []
+    section = text.split(WEEKLY_HEADING, 1)[1]
+    # 只取本节内容，遇到下一个二级标题就截止，避免把后续章节的编号误收进来
+    next_heading = re.search(r"\n##\s+", section)
+    if next_heading:
+        section = section[: next_heading.start()]
+    order: list[str] = []
+    for line in section.splitlines():
+        m = re.match(r"^\s*\d+\.\s+(.+?)\s*$", line)
+        if m:
+            order.append(m.group(1).strip())
+    return order
+
+
+def _weekly_index(today: date) -> dict:
+    """计算指定日期对应的 ISO 周、轮换序号和轮次（每 40 周一轮）。"""
+    order = _load_weekly_order()
+    if not order:
+        raise ValueError("recipes/_index.md 的「每周推荐轮换」为空或格式不可解析")
+    week_start = today - timedelta(days=today.weekday())
+    delta_weeks = (week_start - WEEKLY_ANCHOR).days // 7
+    idx = delta_weeks % len(order)
+    round_no = delta_weeks // len(order) + 1
+    iso = week_start.isocalendar()
+    return {
+        "week": f"{iso.year}-W{iso.week:02d}",
+        "week_start": week_start.isoformat(),
+        "index": idx + 1,
+        "round": max(1, round_no),
+    }
+
+
+def _weekly_plan(weeks: int, today: date | None = None) -> dict:
+    """生成从指定日期起连续 N 周的推荐计划。"""
+    if not 1 <= weeks <= 8:
+        return {"error": "weeks 必须在 1–8 之间"}
+    today = today or date.today()
+    order = _load_weekly_order()
+    if not order:
+        return {"error": "每周推荐轮换为空或格式不可解析，请检查 recipes/_index.md"}
+    by_title = {r["title"]: r for r in _load_all_recipes()}
+    items = []
+    for offset in range(weeks):
+        d = today + timedelta(weeks=offset)
+        info = _weekly_index(d)
+        title = order[info["index"] - 1]
+        recipe = by_title.get(title)
+        if recipe is None:
+            items.append({**info, "title": title, "file": None, "missing": True})
+        else:
+            summary = _recipe_summary(recipe)
+            items.append({**info, "title": title, "file": summary["file"], "meta": summary})
+    return {"anchor": "2026-W36", "cycle": len(order), "weeks": items}
+
+
 # ---- 业务参数 ----
 
 class RecipeQuery(BaseModel):
@@ -261,6 +334,10 @@ class RecommendQuery(BaseModel):
     tag: str | None = Field(default=None, description="限定标签（旧格式兼容）")
     cuisine: str | None = Field(default=None, description="限定菜系")
     taste: str | None = Field(default=None, description="限定口味")
+
+
+class WeeklyPlanQuery(BaseModel):
+    weeks: int = Field(default=4, ge=1, le=8, description="返回周数，1–8，默认 4")
 
 
 # ---- 工具 ----
@@ -342,6 +419,16 @@ async def recommend_recipe(query: RecommendQuery) -> dict:
         "meta": pick["meta"],
         "body": pick["body"].strip(),
     }
+
+
+@mcp.tool()
+async def get_weekly_plan(query: WeeklyPlanQuery) -> dict:
+    """获取本周及后续几周的推荐菜谱。
+
+    按 recipes/_index.md 的「每周推荐轮换」顺序，以 2026-W36 为锚点计算；
+    返回 ISO 周、轮换序号、轮次、菜名、文件与五维标签摘要。
+    """
+    return _weekly_plan(query.weeks)
 
 
 # ---- 入口 ----
