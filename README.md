@@ -109,6 +109,7 @@ python achievements/scripts/stats.py   # 看积分和徽章
 - `search_by_constraint`：自然语言约束查询（如"30分钟内、川菜、下饭、孩子也能吃"）
 - `recommend_recipe`：随机推荐
 - `get_weekly_plan`：本周及后续几周的推荐（按菜谱索引轮换）
+- `get_shopping_list`：按本周推荐汇总买菜清单（同名食材自动合并累加，按肉禽蛋/水产/蔬菜/豆制品/干货/调味分区，输出可粘贴的 Markdown 勾选清单）
 
 配合 Claude Code / Cursor 使用，让 AI 当你的私人厨艺助手。
 

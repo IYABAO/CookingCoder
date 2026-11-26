@@ -7,6 +7,7 @@
 - search_by_constraint: 自然语言约束查询（如"30分钟内、川菜、下饭"）
 - recommend_recipe: 随机/按条件推荐
 - get_weekly_plan: 获取本周推荐
+- get_shopping_list: 按本周推荐汇总买菜清单
 
 用法：
     python -m cookingcoder_mcp.server          # STDIO 模式
@@ -32,7 +33,7 @@ WEEKLY_HEADING = "## 每周推荐轮换"
 mcp = FastMCP(
     "cookingcoder",
     version="2.0.0",
-    instructions="一个家常菜谱工具，支持按菜名查菜谱、按五维标签（菜系/口味/人群/技法/耗时档）筛选、自然语言约束查询、随机推荐。",
+    instructions="一个家常菜谱工具，支持按菜名查菜谱、按五维标签（菜系/口味/人群/技法/耗时档）筛选、自然语言约束查询、随机推荐、本周推荐与本周买菜清单。",
 )
 
 
@@ -302,6 +303,222 @@ def _weekly_plan(weeks: int, today: date | None = None) -> dict:
     return {"anchor": "2026-W36", "cycle": len(order), "weeks": items}
 
 
+# ---- 食材解析与采购清单 ----
+
+INGREDIENT_HEADING = "## 食材清单"
+
+# 不需要采购的「食材」（水、冰水等），不进入买菜清单
+SKIP_INGREDIENTS = {"清水", "水", "开水", "热水", "冰水", "温水", "凉水", "凉开水"}
+
+
+def _is_skipped_ingredient(name: str) -> bool:
+    """判断食材是否属于无需采购项；兼容 '冰水/凉开水' 这类并列写法。"""
+    parts = [p.strip() for p in name.split("/") if p.strip()]
+    if not parts:
+        return False
+    return all(p in SKIP_INGREDIENTS or p.endswith("水") for p in parts)
+
+# 用量解析：前缀数字（整数/小数/半/分数）+ 单位，单位按长度倒序匹配
+_AMOUNT_RE = re.compile(
+    r"^(?P<num>\d+(?:\.\d+)?|半|1/\d+)\s*"
+    r"(?P<unit>整头|小块|小勺|大勺|ml|kg|g|L|盒|罐|碗|片|瓣|块|颗|段|朵|条|根|把|只|个|勺|张|棵|包|袋|头)"
+)
+
+# 采购分区：先按精确名覆盖，再按关键词规则，先命中先归类
+SECTION_ORDER = ["肉禽蛋", "水产", "蔬菜菌菇", "豆制品", "主食干货", "调味料", "其他"]
+_SECTION_EXACT = {
+    "干香菇": "主食干货",
+    "干辣椒": "调味料",
+    "小米辣": "调味料",
+    "郫县豆瓣酱": "调味料",
+}
+_SECTION_RULES = [
+    ("调味料", (
+        "花椒", "胡椒", "辣椒", "辣酱", "豆瓣酱", "生抽", "老抽", "酱油", "蚝油", "料酒", "黄酒",
+        "醋", "盐", "糖", "冰糖", "淀粉", "生粉", "油", "芝麻", "八角", "桂皮", "香叶", "孜然",
+        "五香粉", "鸡精", "味精", "豆豉", "甜面酱", "番茄酱", "咖喱", "椒盐", "泡椒", "酒",
+    )),
+    ("主食干货", (
+        "米饭", "大米", "面条", "挂面", "面粉", "粉丝", "粉条", "年糕", "馄饨皮", "饺子皮",
+        "面包糠", "紫菜", "木耳", "腐竹", "银耳", "花生", "坚果",
+    )),
+    ("水产", ("鱼", "虾", "蟹", "蛤", "贝", "鱿鱼", "海参", "蛏", "海带")),
+    ("肉禽蛋", ("猪", "牛", "羊", "鸡", "鸭", "肉", "排骨", "里脊", "五花", "培根", "火腿", "香肠", "午餐肉", "蛋")),
+    ("豆制品", ("豆腐", "豆干", "豆皮", "千张")),
+    ("蔬菜菌菇", (
+        "菜", "椒", "瓜", "豆", "茄", "葱", "姜", "蒜", "萝卜", "土豆", "山药", "藕", "番茄",
+        "西红柿", "菇", "笋", "芹", "韭", "菠菜", "生菜", "玉米", "南瓜", "秋葵", "香菜", "莴笋",
+    )),
+]
+
+
+def _parse_ingredients(body: str) -> list[dict]:
+    """从菜谱正文的「食材清单（Input）」表格解析食材行。
+
+    返回 [{"name": 食材, "amount": 用量, "prep": 切配, "note": 备注}]；
+    找不到该表或表为空时返回空列表。
+    """
+    idx = body.find(INGREDIENT_HEADING)
+    if idx < 0:
+        return []
+    section = body[idx:]
+    next_heading = re.search(r"\n##\s+", section)
+    if next_heading:
+        section = section[: next_heading.start()]
+
+    items: list[dict] = []
+    for line in section.splitlines():
+        stripped = line.strip()
+        if not stripped.startswith("|"):
+            continue
+        if re.fullmatch(r"\|[\s\-:|]+\|?", stripped):  # 表头分隔行
+            continue
+        cells = [c.strip() for c in stripped.strip("|").split("|")]
+        if not cells or cells[0] in ("食材", "") or cells[0].startswith("常量"):
+            continue  # 表头行
+        if len(cells) < 2 or not cells[1]:
+            continue
+        items.append({
+            "name": cells[0],
+            "amount": cells[1],
+            "prep": cells[2] if len(cells) > 2 else "",
+            "note": cells[3] if len(cells) > 3 else "",
+        })
+    return items
+
+
+def _parse_amount(raw: str) -> tuple[float | None, str | None]:
+    """把用量文本归一为 (数值, 单位)；无法解析时返回 (None, None)。
+
+    '200g' → (200.0,'g')；'半只(约600g)' → (0.5,'只')；'几滴' → (None, None)。
+    """
+    m = _AMOUNT_RE.match(raw.strip())
+    if not m:
+        return None, None
+    num, unit = m.group("num"), m.group("unit")
+    if num == "半":
+        value = 0.5
+    elif "/" in num:
+        a, b = num.split("/")
+        value = float(a) / float(b)
+    else:
+        value = float(num)
+    return value, unit
+
+
+def _format_sum(value: float, unit: str) -> str:
+    """把累加结果格式化为可读用量：最多两位小数，整数不显示小数点。"""
+    rounded = round(value, 2)
+    text = str(int(rounded)) if abs(rounded - int(rounded)) < 1e-9 else f"{rounded:g}"
+    return f"{text}{unit}"
+
+
+def _classify_section(name: str) -> str:
+    """按食材名归入采购分区（肉禽蛋/水产/蔬菜菌菇/豆制品/主食干货/调味料/其他）。"""
+    if name in _SECTION_EXACT:
+        return _SECTION_EXACT[name]
+    for section, keywords in _SECTION_RULES:
+        if any(kw in name for kw in keywords):
+            return section
+    return "其他"
+
+
+def _merge_quantity(raws: list[str], parsed: list[tuple[float | None, str | None]]) -> str:
+    """合并同名食材用量：单位一致则累加，否则按原始写法并列显示。"""
+    unique_raw: list[str] = []
+    for raw in raws:
+        if raw not in unique_raw:
+            unique_raw.append(raw)
+    values = [p for p in parsed if p[0] is not None and p[1] is not None]
+    if len(values) == len(parsed) and len({p[1] for p in values}) == 1:
+        unit = values[0][1]
+        return _format_sum(sum(p[0] for p in values), unit)
+    return " / ".join(unique_raw)
+
+
+def _aggregate_shopping(recipes: list[dict]) -> dict:
+    """把多道菜的食材表合并成按采购分区的清单。
+
+    返回 {"sections": [{"section", "items": [{"name","quantity","used_in"}]}], "item_count"}。
+    """
+    groups: dict[str, dict] = {}
+    for r in recipes:
+        for ing in _parse_ingredients(r["body"]):
+            name = ing["name"]
+            if _is_skipped_ingredient(name):
+                continue
+            g = groups.setdefault(name, {"name": name, "raw": [], "parsed": [], "used_in": []})
+            g["raw"].append(ing["amount"])
+            g["parsed"].append(_parse_amount(ing["amount"]))
+            if r["title"] not in g["used_in"]:
+                g["used_in"].append(r["title"])
+
+    buckets: dict[str, list[dict]] = {s: [] for s in SECTION_ORDER}
+    for g in groups.values():
+        buckets[_classify_section(g["name"])].append({
+            "name": g["name"],
+            "quantity": _merge_quantity(g["raw"], g["parsed"]),
+            "used_in": g["used_in"],
+        })
+
+    sections = [
+        {"section": s, "items": sorted(items, key=lambda i: (-len(i["used_in"]), i["name"]))}
+        for s, items in buckets.items()
+        if items
+    ]
+    return {"sections": sections, "item_count": len(groups)}
+
+
+def _shopping_list(weeks: int, today: date | None = None) -> dict:
+    """按指定周数的推荐菜谱，生成买菜清单与可粘贴的 Markdown 勾选表。"""
+    if not 1 <= weeks <= 8:
+        return {"error": "weeks 必须在 1–8 之间"}
+    plan = _weekly_plan(weeks, today=today)
+    if plan.get("error"):
+        return plan
+
+    by_title = {r["title"]: r for r in _load_all_recipes()}
+    selected = []
+    week_rows = []
+    for item in plan["weeks"]:
+        recipe = by_title.get(item["title"])
+        if recipe is None:
+            continue
+        selected.append(recipe)
+        week_rows.append({"week": item["week"], "title": item["title"], "file": item["file"]})
+    if not selected:
+        return {"error": "本周推荐菜谱无法映射到文件，请检查 recipes/_index.md"}
+
+    agg = _aggregate_shopping(selected)
+    first = plan["weeks"][0]
+    if len(week_rows) == 1:
+        heading = f"## {first['week']} 采购清单（{first['title']}）"
+    else:
+        titles = "、".join(w["title"] for w in week_rows)
+        last_week = week_rows[-1]["week"]
+        tail = last_week[5:] if last_week[:4] == first["week"][:4] else last_week
+        heading = f"## {first['week']}–{tail} 采购清单（{titles}）"
+    lines = [heading, ""]
+    for sec in agg["sections"]:
+        lines.append(f"**{sec['section']}**")
+        for item in sec["items"]:
+            used = "、".join(item["used_in"])
+            lines.append(f"- [ ] {item['name']} {item['quantity']} — {used}")
+        lines.append("")
+
+    return {
+        "week": first["week"],
+        "index": first["index"],
+        "week_start": first["week_start"],
+        "round": first["round"],
+        "weeks": week_rows,
+        "sections": agg["sections"],
+        "item_count": agg["item_count"],
+        "markdown": "\n".join(lines).strip(),
+        "note": "用量沿用菜谱原份量；同名食材单位一致时累加，单位不同时并列显示",
+    }
+
+
 # ---- 业务参数 ----
 
 class RecipeQuery(BaseModel):
@@ -338,6 +555,10 @@ class RecommendQuery(BaseModel):
 
 class WeeklyPlanQuery(BaseModel):
     weeks: int = Field(default=4, ge=1, le=8, description="返回周数，1–8，默认 4")
+
+
+class ShoppingListQuery(BaseModel):
+    weeks: int = Field(default=1, ge=1, le=8, description="采购清单覆盖周数，1–8，默认 1（本周）")
 
 
 # ---- 工具 ----
@@ -429,6 +650,17 @@ async def get_weekly_plan(query: WeeklyPlanQuery) -> dict:
     返回 ISO 周、轮换序号、轮次、菜名、文件与五维标签摘要。
     """
     return _weekly_plan(query.weeks)
+
+
+@mcp.tool()
+async def get_shopping_list(query: ShoppingListQuery) -> dict:
+    """按本周（及后续几周）的推荐菜谱，汇总生成本周买菜清单。
+
+    从每道菜的「食材清单」表提取食材与用量：同名食材单位一致时累加（200g+300g=500g），
+    单位不同时并列显示；按肉禽蛋/水产/蔬菜菌菇/豆制品/主食干货/调味料分区，
+    并附一份可直接贴到备忘录的 Markdown 勾选清单。清水等无需采购项不计入。
+    """
+    return _shopping_list(query.weeks)
 
 
 # ---- 入口 ----

@@ -40,13 +40,14 @@ def _call_tool(name: str, arguments: dict):
 def test_list_tools_includes_weekly_plan():
     tools = _list_tools()
     names = {tool.name for tool in tools}
-    assert len(names) == 5, f"工具数应为 5，实际 {names}"
+    assert len(names) == 6, f"工具数应为 6，实际 {names}"
     assert names == {
         "get_recipe",
         "list_recipes",
         "search_by_constraint",
         "recommend_recipe",
         "get_weekly_plan",
+        "get_shopping_list",
     }
 
 
@@ -106,11 +107,15 @@ def test_weekly_plan_crosses_year():
 
 
 def test_mcp_weekly_plan_payload():
+    """工具返回结构与当周轮换一致；按当天日期推导，避免硬编码跨周失效。"""
     result = _call_tool("get_weekly_plan", {"query": {"weeks": 4}})
     payload = json.loads(result.content[0].text)
     assert "error" not in payload
     assert len(payload["weeks"]) == 4
-    assert payload["weeks"][0]["title"] == "蒜蓉油麦菜"
+    today_info = server._weekly_index(date.today())
+    order = server._load_weekly_order()
+    assert payload["weeks"][0]["week"] == today_info["week"]
+    assert payload["weeks"][0]["title"] == order[today_info["index"] - 1]
 
 
 def test_empty_order_returns_error(monkeypatch):

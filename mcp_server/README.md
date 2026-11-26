@@ -11,6 +11,20 @@
 | `search_by_constraint` | 自然语言约束查询（如“30分钟内、川菜、下饭”） |
 | `recommend_recipe` | 随机推荐一道菜（可限定难度/标签） |
 | `get_weekly_plan` | 本周及后续几周的推荐（按 `recipes/_index.md` 轮换） |
+| `get_shopping_list` | 本周（可多周）买菜清单：合并同名食材、按采购分区、输出 Markdown 勾选表 |
+
+### `get_shopping_list` 用法
+
+```json
+{"query": {"weeks": 1}}
+```
+
+返回字段：`week / index / weeks / sections / item_count / markdown`。
+
+- 食材从每道菜的「食材清单」表解析，`清水` 等无需采购项自动剔除。
+- 同名食材单位一致时累加（`200g + 300g = 500g`、`3瓣 + 4瓣 = 7瓣`）；单位不同时如实并列（`1块 / 3片`）。
+- `markdown` 可直接贴进手机备忘录当勾选清单，条数与 `item_count` 一致。
+- 用量沿用菜谱原份量（2 人份为主），多人吃自行翻倍。
 
 ## 安装
 
@@ -68,6 +82,9 @@ async def main():
         # 本周及后续四周推荐
         plan = await client.call_tool("get_weekly_plan", {"query": {"weeks": 4}})
         print(plan.content[0].text)
+        # 本周买菜清单
+        shopping = await client.call_tool("get_shopping_list", {"query": {"weeks": 1}})
+        print(shopping.content[0].text)
 
 asyncio.run(main())
 ```
